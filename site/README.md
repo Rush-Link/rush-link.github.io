@@ -18,6 +18,8 @@ The workflow at `.github/workflows/pages.yml` publishes this directory whenever 
 
 Repository and release links are explicitly configured with `data-repository="rush-link/rush-link.github.io"` on the `<html>` element in `index.html` and `about.html`. Update both values if the public distribution repository ever moves.
 
+For a newly created repository, enable **Settings → Pages → GitHub Actions** before the first deployment. If the initial push happened earlier, rerun **Deploy RushLink website** once after enabling Pages.
+
 ## Download totals
 
 Open the deployed website with `?stats=1`, for example:
