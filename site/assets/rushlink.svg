@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="background" x1="100" y1="70" x2="930" y2="950" gradientUnits="userSpaceOnUse"><stop stop-color="#172635"/><stop offset=".48" stop-color="#09111a"/><stop offset="1" stop-color="#05080d"/></linearGradient>
+    <linearGradient id="rush" x1="180" y1="280" x2="860" y2="500" gradientUnits="userSpaceOnUse"><stop stop-color="#eefeff"/><stop offset=".55" stop-color="#bceef4"/><stop offset="1" stop-color="#87cad9"/></linearGradient>
+    <linearGradient id="link" x1="170" y1="560" x2="870" y2="790" gradientUnits="userSpaceOnUse"><stop stop-color="#61e8e5"/><stop offset=".5" stop-color="#58a8ff"/><stop offset="1" stop-color="#9b78ff"/></linearGradient>
+    <mask id="rush-cut"><rect width="1024" height="1024" fill="#fff"/><path d="M152 433L875 370" stroke="#000" stroke-width="17"/></mask>
+    <mask id="link-cut"><rect width="1024" height="1024" fill="#fff"/><path d="M151 706L877 643" stroke="#000" stroke-width="17"/></mask>
+  </defs>
+  <rect x="28" y="28" width="968" height="968" rx="228" fill="url(#background)"/>
+  <rect x="43" y="43" width="938" height="938" rx="213" fill="none" stroke="#35576e" stroke-width="18"/>
+  <g transform="skewX(-5)" font-family="Bahnschrift, Arial Narrow, sans-serif" font-weight="800" text-anchor="middle">
+    <text x="548" y="493" font-size="263" textLength="720" lengthAdjust="spacingAndGlyphs" fill="url(#rush)" stroke="#02070c" stroke-width="22" paint-order="stroke" mask="url(#rush-cut)">RUSH</text>
+    <text x="548" y="766" font-size="263" textLength="720" lengthAdjust="spacingAndGlyphs" fill="url(#link)" stroke="#02070c" stroke-width="22" paint-order="stroke" mask="url(#link-cut)">LINK</text>
+  </g>
+  <path d="M178 538h118M728 538h118" stroke="#5aabc9" stroke-width="14" stroke-linecap="round" opacity=".82"/>
+</svg>

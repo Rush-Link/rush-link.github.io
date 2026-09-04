@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en" data-repository="rush-link/rush-link.github.io">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#070b11" />
+    <meta name="description" content="RushLink is an early-alpha desktop companion for the latest HeadRush Prime family—Flex Prime, Prime and Core—built around TonePilot, StageHand and recoverable rig experimentation with Change History." />
+    <meta property="og:title" content="RushLink — Shape tones. Own the stage." />
+    <meta property="og:description" content="A modern HeadRush companion featuring TonePilot, StageHand and meaningful per-rig Change History. Desktop early alpha available now." />
+    <meta property="og:image" content="assets/rushlink-social-card.png" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>RushLink — Shape tones. Own the stage.</title>
+    <link rel="icon" type="image/svg+xml" href="assets/rushlink.svg" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="scroll-progress" aria-hidden="true"><span></span></div>
+    <div class="ambient ambient--one" aria-hidden="true"></div>
+    <div class="ambient ambient--two" aria-hidden="true"></div>
+    <div class="ambient ambient--three" aria-hidden="true"></div>
+    <div class="cursor-light" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <header class="site-header" data-header>
+      <a class="site-brand" href="#top" aria-label="RushLink home">
+        <img src="assets/rushlink.svg" alt="" width="46" height="46" />
+        <span><strong>RushLink</strong><small>HeadRush companion</small></span>
+      </a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="#tonepilot">TonePilot</a>
+        <a href="#stagehand">StageHand</a>
+        <a href="#change-history">History</a>
+        <a href="#features">Features</a>
+        <a href="#docs">How to use</a>
+        <a href="#support">Support</a>
+        <a href="about.html">Hire Me!</a>
+      </nav>
+      <div class="header-actions">
+        <span class="alpha-pill"><i></i>Early alpha</span>
+        <a class="support-button support-button--header" href="https://ko-fi.com/mattc_" target="_blank" rel="noopener noreferrer" aria-label="Buy me a coffee on Ko-fi to support RushLink"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h11v7a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5V8Zm11 2h1a3 3 0 0 1 0 6h-1M9 12c0-2 3-2 3 0 0-2 3-2 3 0 0 2-3 4-3 4s-3-2-3-4Z"/></svg><span>Buy me a coffee</span></a>
+        <a class="button button--small button--primary magnetic" data-release-link href="#download">Download</a>
+        <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu" data-menu-button>
+          <span></span><span></span>
+        </button>
+      </div>
+      <nav class="mobile-nav" id="mobile-menu" aria-label="Mobile navigation" data-mobile-menu>
+        <a href="#tonepilot">TonePilot</a><a href="#stagehand">StageHand</a><a href="#change-history">Change History</a><a href="#features">Features</a><a href="#docs">How to use</a><a href="#support">Support RushLink</a><a href="about.html">Hire Me!</a><a href="#roadmap">Roadmap</a><a data-release-link href="#download">Download alpha</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-copy reveal">
+          <div class="hero-kicker"><span class="signal-dot"></span><span>Built for the HeadRush Prime family</span><strong>Desktop alpha</strong></div>
+          <h1>Shape tones.<br /><span class="gradient-text">Own the stage.</span></h1>
+          <p class="hero-lead">RushLink turns the deepest parts of your HeadRush workflow into a fast, focused desktop experience—discover and audition captures with <strong>TonePilot</strong>, perform with <strong>StageHand</strong>, and experiment safely with <strong>Change History</strong>.</p>
+          <div class="hero-actions">
+            <a class="button button--primary button--large magnetic" data-release-link href="#download"><span>Download early alpha</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></svg></a>
+            <a class="button button--ghost button--large" href="#flagship"><span>Explore the flagship features</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
+          </div>
+          <div class="hero-trust">
+            <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Free to use</span>
+            <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6l-8-4Z"/></svg>Local-network control</span>
+            <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5v14"/></svg>Flex Prime · Prime · Core</span>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal reveal--delay" data-tilt-root>
+          <div class="orbit orbit--one" aria-hidden="true"><span></span></div>
+          <div class="orbit orbit--two" aria-hidden="true"><span></span></div>
+          <div class="app-window" data-tilt aria-label="Animated RushLink application preview">
+            <div class="app-window__bar">
+              <span class="window-lights"><i></i><i></i><i></i></span>
+              <span class="window-brand"><img src="assets/rushlink.svg" alt="" /><span><b>RushLink</b><small>HEADRUSH WORKSPACE</small></span></span>
+              <span class="device-link"><i></i><span><b>Prime family connected</b><small>Local sync · just now</small></span></span>
+              <span class="window-mode">LIVE</span>
+            </div>
+            <div class="app-window__body">
+              <aside class="mock-sidebar" aria-label="RushLink workspace preview navigation">
+                <span class="mock-sidebar__label">WORKSPACES</span>
+                <button type="button" data-demo-nav="tonepilot" class="active" aria-label="Show TonePilot preview"><svg viewBox="0 0 24 24"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z"/></svg><span>TonePilot</span></button>
+                <button type="button" data-demo-nav="stagehand" aria-label="Show StageHand preview"><svg viewBox="0 0 24 24"><path d="M4 18V6m5 12V9m5 9V4m6 14v-7"/></svg><span>StageHand</span></button>
+                <button type="button" data-demo-nav="history" aria-label="Show Change History preview"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg><span>History</span></button>
+                <span class="mock-sidebar__rule"></span>
+                <span class="mock-sidebar__item"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg><span>Rig Editor</span></span>
+                <span class="mock-sidebar__item"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4zM8 9h8M8 13h5"/></svg><span>Library</span></span>
+              </aside>
+              <div class="mock-workspace">
+                <div class="mock-context">
+                  <span><small>NOW EDITING</small><b>Modern Lead</b></span>
+                  <span class="mock-context__sync"><i></i><span><b>Device state synchronized</b><small>Safe live apply enabled</small></span></span>
+                </div>
+                <div class="demo-switcher" role="tablist" aria-label="Feature preview">
+                  <button class="active" role="tab" aria-selected="true" data-demo-tab="tonepilot"><i></i>TonePilot</button>
+                  <button role="tab" aria-selected="false" data-demo-tab="stagehand"><i></i>StageHand</button>
+                  <button role="tab" aria-selected="false" data-demo-tab="history"><i></i>Change History</button>
+                </div>
+                <div class="mock-panel active" data-demo-panel="tonepilot">
+                  <div class="mock-heading"><span><b>TONEPILOT · AUDITION WORKSPACE</b><small>Find a capture and hear it through a complete rig.</small></span><em>TONE3000 · 48</em></div>
+                  <div class="tone-preview-grid">
+                    <div class="tone-browser-mini">
+                      <div class="tone-source-mini"><b>Tone3000</b><span>HeadRush Cloud</span></div>
+                      <div class="tone-search-mini"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16 16 4 4"/></svg><span>Fortin high gain</span><small>Newest</small></div>
+                      <div class="tone-stack"><article class="tone-mini selected"><span class="tone-avatar">NAM</span><span><b>Modern Cali Lead</b><small>Fortin · Amp · A2</small></span><i></i></article><article class="tone-mini"><span class="tone-avatar violet">NAM</span><span><b>Fortified Rhythm</b><small>High gain · A1</small></span><i></i></article><article class="tone-mini"><span class="tone-avatar blue">IR</span><span><b>British V30 412</b><small>Cabinet · New today</small></span><i></i></article></div>
+                    </div>
+                    <div class="audition-mini">
+                      <div class="audition-mini__head"><span><small>READY TO AUDITION</small><b>Modern Cali Lead</b></span><em>NAM · AMP</em></div>
+                      <div class="mini-chain" aria-label="Test rig signal chain"><span class="chain-node">COMP</span><span class="chain-node hot">DRIVE</span><span class="chain-node capture">NAM</span><span class="chain-node ir">IR</span><span class="chain-node">DLY</span><span class="chain-node">REV</span></div>
+                      <div class="audition-state"><i></i><span><b>Complete test rig ready</b><small>Original rig protected</small></span></div>
+                      <button tabindex="-1"><span></span>Audition on HeadRush</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="mock-panel" data-demo-panel="stagehand">
+                  <div class="mock-heading"><span><b>STAGEHAND · PERFORMANCE SURFACE</b><small>Rig-aware controls sized for confident live use.</small></span><em>STAGE 01 · LOCKED</em></div>
+                  <div class="stage-preview-grid"><button class="stage-scene">SCENE A<small>Clean</small></button><button class="stage-scene violet">SCENE B<small>Rhythm</small></button><button class="stage-action wide">TUNER<small>Tap · Hold to mute</small></button><button class="stage-action amber">BOOST<small>+3 dB</small></button><button class="stage-action green">DELAY<small>1/4 dotted</small></button><button class="stage-action blue wide">DRUMMER<small>Verse · 112 BPM</small></button></div>
+                  <div class="stage-preview-status"><span><i></i>Layout locked for performance</span><small>Attached to Modern Lead</small></div>
+                </div>
+                <div class="mock-panel" data-demo-panel="history">
+                  <div class="mock-heading"><span><b>CHANGE HISTORY · MODERN LEAD</b><small>Meaningful rig edits, described and recoverable.</small></span><em>7 SAVED STATES</em></div>
+                  <div class="history-preview">
+                    <div class="history-preview__current"><i></i><span><b>Current device state</b><small>Modern Lead · synchronized now</small></span><strong>LIVE</strong></div>
+                    <div class="history-preview__line"></div>
+                    <button tabindex="-1"><i></i><span><b>Adjusted amp gain</b><small>Gain 5.4 → 6.1 · 2 min ago</small></span><strong>Preview</strong></button>
+                    <button tabindex="-1"><i></i><span><b>Moved stereo delay</b><small>Slot 10 → Slot 11 · 6 min ago</small></span><strong>Preview</strong></button>
+                    <button tabindex="-1"><i></i><span><b>Changed cabinet IR</b><small>British V30 412 · 11 min ago</small></span><strong>Preview</strong></button>
+                  </div>
+                  <div class="history-preview__footer"><span>Preview safely without creating false entries</span><button tabindex="-1">Return to current</button></div>
+                </div>
+                <div class="mock-statusbar" aria-hidden="true"><span><i></i>Device API healthy</span><span>Live apply · History recording</span><strong>RUSHLINK ALPHA</strong></div>
+              </div>
+            </div>
+            <div class="app-window__reflection" aria-hidden="true"></div>
+          </div>
+          <div class="floating-chip floating-chip--one"><span>SAFE</span><small>change history</small></div>
+          <div class="floating-chip floating-chip--two"><span>LIVE</span><small>device sync</small></div>
+        </div>
+
+        <a class="scroll-cue" href="#flagship"><span>Discover RushLink</span><i></i></a>
+      </section>
+
+      <div class="ticker" aria-label="RushLink highlights">
+        <div class="ticker__track">
+          <span>TonePilot</span><i></i><span>StageHand</span><i></i><span>Change History</span><i></i><span>Live device sync</span><i></i><span>Safe rig experimentation</span><i></i><span>Test Rig Studio</span><i></i><span>TonePilot</span><i></i><span>StageHand</span><i></i><span>Change History</span><i></i><span>Live device sync</span><i></i><span>Safe rig experimentation</span><i></i><span>Test Rig Studio</span><i></i>
+        </div>
+      </div>
+
+      <section class="section flagship" id="flagship">
+        <div class="section-heading reveal"><span class="eyebrow">THE RUSHLINK DIFFERENCE</span><h2>Three flagship workflows.<br /><span>One uninterrupted creative loop.</span></h2><p>Discover a sound, perform it, and reshape it freely—without wrestling with a small screen or losing the version that worked.</p></div>
+
+        <article class="flagship-card flagship-card--tone reveal" id="tonepilot" data-spotlight-card>
+          <div class="flagship-copy">
+            <div class="feature-number">01</div>
+            <span class="feature-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z"/></svg>FLAGSHIP · DISCOVERY</span>
+            <h3>Tone<span>Pilot</span></h3>
+            <p>Search deep tone catalogues without loading hundreds of results at once. Filter, inspect, classify and audition NAM captures or IRs through a complete test rig on your actual HeadRush.</p>
+            <ul class="feature-list"><li><span>01</span>Browse Tone3000 and HeadRush Cloud separately</li><li><span>02</span>Advanced capture, gear, platform and style filtering</li><li><span>03</span>Editable test rigs that preserve your current rig</li><li><span>04</span>Automatic NAM/IR placement and adaptive bypass</li></ul>
+            <a href="#docs-tonepilot" class="text-link">Learn the TonePilot workflow <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+          </div>
+          <div class="tone-console visual-console" data-tilt-root>
+            <div class="console-glow"></div>
+            <div class="console-top"><span><i></i>TONE3000</span><button tabindex="-1">HEADRUSH CLOUD</button></div>
+            <div class="console-search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m16 16 4 4"/></svg><span>Search captures, amps, creators…</span><kbd>⌘ K</kbd></div>
+            <div class="console-filters"><span class="active">Amp</span><span>A2</span><span>High gain</span><span>4×12</span><span>Newest</span></div>
+            <div class="console-content">
+              <div class="tone-results"><article><span class="cover cover--cyan">NAM</span><div><b>Silverface Bloom</b><small>Clean · Combo · A2</small><em><i style="--score:92%"></i></em></div><strong>4.9</strong></article><article class="active"><span class="cover cover--violet">A2</span><div><b>Modern Lead</b><small>High gain · Head · A2</small><em><i style="--score:84%"></i></em></div><strong>4.8</strong></article><article><span class="cover cover--blue">IR</span><div><b>British 412 V30</b><small>Cabinet · SM57 · IR</small><em><i style="--score:76%"></i></em></div><strong>4.7</strong></article></div>
+              <div class="rig-route"><div class="route-title"><span><b>Modern Lead</b><small>Automatic: amp capture</small></span><i>A2</i></div><div class="route-nodes"><span>IN</span><span>COMP</span><span class="hot">DRIVE</span><span class="capture">NAM</span><span class="ir">IR</span><span>DLY</span><span>REV</span></div><div class="route-status"><i></i><span>Test rig ready</span><small>Slot 7</small></div><button tabindex="-1"><span></span>Audition on HeadRush</button></div>
+            </div>
+            <div class="scanline" aria-hidden="true"></div>
+          </div>
+        </article>
+
+        <article class="flagship-card flagship-card--stage reveal" id="stagehand" data-spotlight-card>
+          <div class="stage-console visual-console">
+            <div class="stage-console__bar"><span><i></i>STAGE 01 · METAL SET</span><strong>RIG FOLLOW</strong></div>
+            <div class="stage-console__grid">
+              <button class="control control--cyan"><small>SCENE A</small><b>CLEAN</b><i></i></button><button class="control control--violet"><small>SCENE B</small><b>RHYTHM</b><i></i></button><button class="control control--rose"><small>SCENE C</small><b>LEAD</b><i></i></button>
+              <button class="control control--wide control--tuner"><span class="tuner-note">E</span><span><b>+1</b><small>cent</small></span><em></em></button><button class="control control--amber"><small>EFFECT</small><b>BOOST</b><i></i></button>
+              <button class="control control--green"><small>EFFECT</small><b>DELAY</b><i></i></button><button class="control control--blue control--wide"><small>DRUMMER</small><b>VERSE · 112</b><i></i></button><button class="control control--neutral"><small>RIG</small><b>NEXT</b><i></i></button>
+            </div>
+            <div class="stage-console__footer"><span><i></i>Layout locked</span><span>Tap controls · Hold for secondary action</span></div>
+          </div>
+          <div class="flagship-copy">
+            <div class="feature-number">02</div>
+            <span class="feature-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18V6m5 12V9m5 9V4m6 14v-7"/></svg>FLAGSHIP · PERFORMANCE</span>
+            <h3>Stage<span>Hand</span></h3>
+            <p>Replace tiny targets and rigid layouts with a performance surface built around your hands, feet and set. Every stage can follow a rig or stay independent.</p>
+            <ul class="feature-list"><li><span>01</span>Custom grids up to 4 rows × 8 columns</li><li><span>02</span>Drag, resize and colour-code live controls</li><li><span>03</span>Scenes, effects, tuner, drummer and compound decks</li><li><span>04</span>External MIDI Learn for OS-connected controllers</li></ul>
+            <a href="#docs-stagehand" class="text-link">Build your first stage <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+          </div>
+        </article>
+
+        <article class="flagship-card flagship-card--history reveal" id="change-history" data-spotlight-card>
+          <div class="flagship-copy">
+            <div class="feature-number">03</div>
+            <span class="feature-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg>FLAGSHIP · CREATIVE SAFETY</span>
+            <h3>Change <span>History</span></h3>
+            <p>Push a rig further without losing the version that felt right. RushLink records meaningful edits as understandable states—not a flood of every slider movement.</p>
+            <ul class="feature-list"><li><span>01</span>Automatic before-and-after states for meaningful edits</li><li><span>02</span>Human-readable descriptions of what changed</li><li><span>03</span>Preview any point without creating false history entries</li><li><span>04</span>Restore an older version or return to the live device state</li></ul>
+            <a href="#docs-history" class="text-link">See how Change History works <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+          </div>
+          <div class="history-console visual-console" aria-label="Change History preview">
+            <div class="history-console__bar"><span><i></i>MODERN LEAD</span><strong>7 STATES</strong></div>
+            <div class="history-console__now"><span><i></i><b>Current device state</b><small>Live and synchronized</small></span><em>NOW</em></div>
+            <div class="history-console__rail" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+            <div class="history-console__entries">
+              <article class="active"><time>2 min</time><span><b>Refined the lead response</b><small>Amp gain 5.4 → 6.1 · Presence +0.6</small></span><strong>PREVIEWING</strong></article>
+              <article><time>6 min</time><span><b>Moved the stereo delay</b><small>Slot 10 → Slot 11</small></span><button tabindex="-1">Preview</button></article>
+              <article><time>11 min</time><span><b>Changed the cabinet IR</b><small>British V30 412 selected</small></span><button tabindex="-1">Preview</button></article>
+              <article><time>18 min</time><span><b>Added post-cabinet EQ</b><small>Graphic EQ inserted in Slot 9</small></span><button tabindex="-1">Preview</button></article>
+            </div>
+            <div class="history-console__actions"><button tabindex="-1">Return to current</button><button tabindex="-1">Restore this state</button></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="section feature-section" id="features">
+        <div class="section-heading section-heading--split reveal"><div><span class="eyebrow">MORE THAN TWO TRICKS</span><h2>Your entire HeadRush workspace,<br /><span>rethought for a bigger screen.</span></h2></div><p>RushLink combines deep editing, organisation, performance and recovery tools while keeping the device as the source of truth.</p></div>
+        <div class="bento-grid">
+          <article class="bento bento--wide reveal" data-spotlight-card><div class="bento-icon"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="8" cy="6" r="2"/><circle cx="15" cy="12" r="2"/><circle cx="11" cy="18" r="2"/></svg></div><span>RIG EDITOR</span><h3>The pedal’s signal chain, made readable.</h3><p>RushLink presents the Prime family’s signal path as a responsive visual chain, including split routing. Drag blocks, edit parameters, browse device files and work with presets or graphic EQ from one focused inspector.</p><div class="chain-art" aria-hidden="true"><i></i><i></i><i class="active"></i><i></i><i class="violet"></i><i></i><i></i><span></span></div></article>
+          <article class="bento reveal" data-spotlight-card><div class="bento-icon violet"><svg viewBox="0 0 24 24"><path d="M5 6h14v12H5zM8 9h8M8 13h5"/><path d="M9 18v3m6-3v3"/></svg></div><span>FOOTSWITCHES & SCENES</span><h3>Assignments you can understand.</h3><p>Edit scenes against the live signal chain, configure footswitch behaviour and shape expression assignments in one visual workspace.</p><div class="history-art"><i></i><i></i><i></i><span>Device-aware</span></div></article>
+          <article class="bento reveal" data-spotlight-card><div class="bento-icon green"><svg viewBox="0 0 24 24"><path d="M4 19V5m16 14V5M8 8h8v8H8z"/></svg></div><span>RIGS & SETLISTS</span><h3>Find the next sound fast.</h3><p>Search, favourite, audition and edit device rigs. Build and navigate setlists without losing context.</p><div class="library-art"><span>01</span><b>Neon Boulevard</b><i></i><span>02</span><b>Glass Horizon</b><i></i></div></article>
+          <article class="bento reveal" data-spotlight-card><div class="bento-icon amber"><svg viewBox="0 0 24 24"><path d="M12 3v18M5 8h14M5 16h14"/><circle cx="8" cy="8" r="2"/><circle cx="16" cy="16" r="2"/></svg></div><span>PERFORMANCE TOOLS</span><h3>Stay close to the instrument.</h3><p>Control the device tuner, drummer and Global EQ through interfaces designed for clear feedback and quick adjustments.</p><div class="meter-art"><i style="--h:35%"></i><i style="--h:52%"></i><i style="--h:78%"></i><i style="--h:61%"></i><i style="--h:88%"></i><i style="--h:44%"></i><i style="--h:72%"></i></div></article>
+          <article class="bento bento--wide reveal" data-spotlight-card><div class="bento-icon blue"><svg viewBox="0 0 24 24"><path d="M6 4h12v16H6zM9 8h6M9 12h6M9 16h3"/></svg></div><span>LIBRARY & BACKUP</span><h3>Your work, organised and recoverable.</h3><p>Browse reflected device files, export library data and create restorable snapshots for rigs, assignments, drums, MIDI, Global EQ and settings.</p><div class="backup-art"><span><i></i>Device snapshot</span><svg viewBox="0 0 120 30"><path d="M2 22c20 0 18-15 38-15s22 15 40 15 18-12 38-12"/></svg><strong>Ready</strong></div></article>
+        </div>
+      </section>
+
+      <section class="section workflow-section">
+        <div class="section-heading reveal"><span class="eyebrow">FROM ZERO TO SIGNAL</span><h2>Connected in minutes.<br /><span>Useful from the first click.</span></h2></div>
+        <ol class="workflow">
+          <li class="reveal"><span class="step-index">01</span><div class="step-icon"><svg viewBox="0 0 24 24"><path d="M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M12 20h.01"/></svg></div><h3>Share a trusted network</h3><p>Connect your desktop and compatible HeadRush pedal to the same local network.</p></li>
+          <li class="reveal"><span class="step-index">02</span><div class="step-icon"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4zM8 22h8M12 18v4"/></svg></div><h3>Let RushLink find it</h3><p>Select Flex Prime, Prime or Core, use automatic discovery, or enter a private IP or <code>.local</code> hostname.</p></li>
+          <li class="reveal"><span class="step-index">03</span><div class="step-icon"><svg viewBox="0 0 24 24"><path d="m8 5 11 7-11 7V5Z"/></svg></div><h3>Play, edit and perform</h3><p>Device state stays live while you explore TonePilot, edit rigs or step into StageHand.</p></li>
+        </ol>
+      </section>
+
+      <section class="section docs-section" id="docs">
+        <div class="docs-heading reveal"><span class="eyebrow">DOCUMENTATION</span><h2>Learn RushLink.<br /><span>Keep your momentum.</span></h2><p>This quick guide covers the current desktop alpha. The interface will keep evolving, but the safety principles stay the same.</p></div>
+        <div class="docs-layout">
+          <aside class="docs-nav reveal" aria-label="Documentation sections">
+            <span>ON THIS PAGE</span>
+            <a class="active" href="#docs-start">Getting started</a><a href="#docs-tonepilot">Using TonePilot</a><a href="#docs-stagehand">Using StageHand</a><a href="#docs-editor">Editing rigs</a><a href="#docs-history">Change History</a><a href="#docs-safety">Live apply & safety</a><a href="#docs-faq">FAQ</a>
+            <div class="docs-note"><i></i><span><strong>Compatible devices</strong><small>Flex Prime · Prime · Core</small></span></div>
+          </aside>
+          <div class="docs-content">
+            <article id="docs-start" class="doc-article reveal"><span class="doc-number">01</span><div><span class="doc-label">GETTING STARTED</span><h3>Connect RushLink to your pedal</h3><p>Install and open the desktop alpha, place both devices on the same trusted LAN, then choose your connection method.</p><ol class="doc-steps"><li><b>Open Settings → Connection.</b><span>Select Flex Prime, Prime or Core to use that model’s standard hostname.</span></li><li><b>Try automatic discovery.</b><span>If discovery is unavailable, enter the pedal’s <code>.local</code> hostname or private IP.</span></li><li><b>Confirm the live device card.</b><span>The sidebar shows the connected device and host. RushLink then keeps visible workspaces synchronized.</span></li><li><b>Choose how edits apply.</b><span>On the first change, RushLink explains live apply. You can keep immediate changes or use staged writes.</span></li></ol><div class="callout"><svg viewBox="0 0 24 24"><path d="M12 3 3 20h18L12 3Zm0 6v5m0 3h.01"/></svg><span><strong>Alpha advice</strong>Back up important rigs before extended sessions and verify critical changes on the device.</span></div></div></article>
+
+            <article id="docs-tonepilot" class="doc-article reveal"><span class="doc-number">02</span><div><span class="doc-label">TONEPILOT</span><h3>Audition a capture through a real test chain</h3><p>TonePilot keeps Tone3000 and HeadRush Cloud separate, loads results in manageable batches, and adapts the test chain to the selected capture.</p><ol class="doc-steps"><li><b>Choose a source.</b><span>Open Tone3000 or HeadRush Cloud. Cloud data is only requested when its tab is selected.</span></li><li><b>Filter before loading more.</b><span>Narrow by capture type, platform format, style, gear and ordering. Search runs against the active source.</span></li><li><b>Review automatic classification.</b><span>RushLink identifies amp, effect, amp+IR, IR or full-rig content. Override it manually when the source metadata is incomplete.</span></li><li><b>Prepare the Test Rig Studio.</b><span>Choose or edit a template. Locked host slots keep drive, amp, NAM and IR content in valid positions; other blocks remain movable.</span></li><li><b>Press “Audition on HeadRush”.</b><span>RushLink loads the complete test chain, inserts the selected file into its NAM or IR host, and keeps your previous rig available for restoration.</span></li><li><b>Finish the audition.</b><span>Return to the original rig or save the result intentionally. Test rigs never silently overwrite existing rigs.</span></li></ol></div></article>
+
+            <article id="docs-stagehand" class="doc-article reveal"><span class="doc-number">03</span><div><span class="doc-label">STAGEHAND</span><h3>Build a live surface around the set</h3><p>StageHand separates layout work from performance so accidental edits stay out of the show.</p><ol class="doc-steps"><li><b>Create or select a stage.</b><span>A stage can be independent or attached to a rig so the layout follows rig changes.</span></li><li><b>Open Stage edit.</b><span>Choose 1–4 rows and 1–8 columns, shorten the first row, and tune horizontal, vertical and outer spacing.</span></li><li><b>Add controls.</b><span>Drag scenes, block toggles, rig actions, tuner, drummer or supported multi-button decks into the grid.</span></li><li><b>Edit one control.</b><span>Choose its label, colour, action, tap behavior and—where safe—a compatible hold behavior.</span></li><li><b>Optionally use MIDI Learn.</b><span>RushLink can learn from controllers exposed by the operating system. Device actions themselves use the reflected device API.</span></li><li><b>Lock the layout.</b><span>Enter performance mode for large, reliable targets and clear visual press feedback.</span></li></ol><div class="callout callout--info"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-9h.01"/></svg><span><strong>Important MIDI boundary</strong>RushLink does not pretend unsupported device state exists. Command-only functions are labelled clearly.</span></div></div></article>
+
+            <article id="docs-editor" class="doc-article reveal"><span class="doc-number">04</span><div><span class="doc-label">RIG EDITOR</span><h3>Edit the signal path with context</h3><p>RushLink visualizes the connected Prime-family device’s signal path as a responsive chain. Select a block to edit its parameters, presets, EQ response or device-backed file assignment. Drag populated blocks to reorder them. Split routes are drawn according to the current device topology, while Input, Mix and Output controls stay focused on parameters that actually apply.</p><div class="shortcut-grid"><span><kbd>Ctrl</kbd><kbd>K</kbd><small>Open rig search</small></span><span><kbd>Click</kbd><small>Select a block</small></span><span><kbd>Drag</kbd><small>Reorder blocks</small></span><span><kbd>Right click</kbd><small>Context actions</small></span></div></div></article>
+
+            <article id="docs-history" class="doc-article reveal"><span class="doc-number">05</span><div><span class="doc-label">CHANGE HISTORY</span><h3>Explore an idea without losing your way back</h3><p>Change History belongs to each rig and records completed, meaningful edits. Temporary scene changes and routine effect bypass actions stay out of the timeline so it remains useful.</p><ol class="doc-steps"><li><b>Edit naturally.</b><span>RushLink waits for a parameter gesture or structural change to finish, then records the useful before-and-after state.</span></li><li><b>Understand the timeline.</b><span>Entries describe actions such as moving a block, changing a preset or adjusting an amp—not a stream of anonymous values.</span></li><li><b>Preview an older state.</b><span>Select an entry to hear and inspect it. Preview navigation does not create another history entry.</span></li><li><b>Choose the outcome.</b><span>Return to the current live device state, restore the previewed version, or deliberately overwrite the current state.</span></li><li><b>Keep the record.</b><span>History is preserved for the rig, with the current device state always available as the safe destination.</span></li></ol></div></article>
+
+            <article id="docs-safety" class="doc-article reveal"><span class="doc-number">06</span><div><span class="doc-label">LIVE APPLY & SAFETY</span><h3>The pedal remains the source of truth</h3><p>RushLink listens for device events and uses efficient page-scoped polling as a fallback. Immediate edits are designed to feel direct, while history and snapshots provide recovery. Network requests are restricted to <code>.local</code>, loopback and private/link-local addresses; arbitrary remote targets, redirects, credentials and non-API routes are rejected by the native transport.</p></div></article>
+
+            <article id="docs-faq" class="doc-article reveal"><span class="doc-number">07</span><div><span class="doc-label">FAQ</span><div class="faq-list"><details><summary>Which HeadRush devices work today?<svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><p>RushLink is compatible with the latest HeadRush Prime family: Flex Prime, Prime and Core. Because this is an early alpha built around an evolving, undocumented device API, some model- or firmware-specific controls may differ and should be verified on the pedal.</p></details><details><summary>Is RushLink an official HeadRush product?<svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><p>No. RushLink is an independent, unofficial companion and is not affiliated with or endorsed by HeadRush or inMusic.</p></details><details><summary>Does it send my audio to the computer?<svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><p>No. RushLink controls supported device functions and reads exposed state. It does not claim a hidden HTTP or WebSocket audio stream from the pedal.</p></details><details><summary>Will there be mobile versions?<svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><p>Yes, they are planned after the desktop workflow stabilizes: iPadOS and Android tablets first, followed by iPhone and Android phone layouts.</p></details><details><summary>Why call it an early alpha?<svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><p>The product is actively evolving against an undocumented device API. Some workflows, copy and compatibility boundaries will change as more physical testing and firmware contracts become available.</p></details></div></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section support-section" id="support">
+        <div class="support-shell reveal" data-spotlight-card>
+          <div class="support-copy">
+            <span class="eyebrow">SUPPORT INDEPENDENT DEVELOPMENT</span>
+            <h2>If RushLink earns a place in your setup,<br /><span>help me keep improving it.</span></h2>
+            <p>I build RushLink independently and keep it free. If it saves you time or makes your HeadRush less frustrating to use, a Ko-fi contribution helps me spend more time testing hardware, fixing rough edges and preparing dependable releases.</p>
+            <div class="support-actions">
+              <a class="button button--support button--large magnetic" href="https://ko-fi.com/mattc_" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h11v7a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5V8Zm11 2h1a3 3 0 0 1 0 6h-1M9 12c0-2 3-2 3 0 0-2 3-2 3 0 0 2-3 4-3 4s-3-2-3-4Z"/></svg><span>Buy me a coffee on Ko-fi</span></a>
+              <a class="support-share" href="about.html#contact">Send feedback instead <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+            </div>
+            <small>Completely optional. Any amount helps, and RushLink stays free whether you contribute or not.</small>
+          </div>
+
+          <div class="support-impact" aria-label="What support helps fund">
+            <article><span class="support-impact__icon support-impact__icon--cyan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 16V8l8-5 8 5v8l-8 5-8-5Zm8-13v18M4 8l8 5 8-5"/></svg></span><div><b>Test more HeadRush models</b><p>Access to Prime and Core hardware means fewer assumptions and more compatibility checks on the devices people actually use.</p></div><em>HARDWARE</em></article>
+            <article><span class="support-impact__icon support-impact__icon--violet"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 4 7v5c0 5 3.3 8 8 9 4.7-1 8-4 8-9V7l-8-4Zm-3 9 2 2 4-5"/></svg></span><div><b>Ship signed installers</b><p>Windows code signing, Apple notarization and release infrastructure reduce warnings and make installation less intimidating.</p></div><em>RELEASES</em></article>
+            <article><span class="support-impact__icon support-impact__icon--amber"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3 5 14h6l-1 7 9-12h-6l1-6Z"/></svg></span><div><b>Fund the unglamorous work</b><p>Bug fixes, accessibility, documentation and careful device testing take time but make the difference between a demo and a dependable tool.</p></div><em>QUALITY</em></article>
+            <article><span class="support-impact__icon support-impact__icon--blue"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M10 17h4"/></svg></span><div><b>Take RushLink beyond desktop</b><p>Tablet and phone versions need touch-first design, platform testing and time after the desktop foundation is stable.</p></div><em>FUTURE</em></article>
+          </div>
+
+          <div class="support-note">
+            <span><i></i><b>Money is not the only way to help.</b></span>
+            <p>A useful bug report, a device detail or simply telling another HeadRush player about RushLink can make a real difference while the project is young.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section roadmap-section" id="roadmap">
+        <div class="section-heading section-heading--split reveal"><div><span class="eyebrow">ROADMAP</span><h2>Desktop first.<br /><span>Then every screen you play beside.</span></h2></div><p>RushLink is intentionally shipping in stages. Each platform follows after its local-network behavior, permissions and physical-device workflows can be tested properly.</p></div>
+        <div class="roadmap-track reveal">
+          <article class="current"><span>NOW</span><i></i><h3>Desktop early alpha</h3><p>Flex Prime, Prime and Core workflows with TonePilot, StageHand, Change History, rig editing, library, backup and performance tools.</p><strong>IN ACTIVE DEVELOPMENT</strong></article>
+          <article><span>NEXT</span><i></i><h3>Desktop hardening</h3><p>Signed distribution, deeper hardware tests, smoother onboarding and additional device-contract validation.</p><strong>PLANNED</strong></article>
+          <article><span>THEN</span><i></i><h3>iPadOS + Android tablets</h3><p>Touch-first StageHand, responsive rig editing, rotation, split view and mobile local-network permissions.</p><strong>PLANNED</strong></article>
+          <article><span>LATER</span><i></i><h3>iPhone + Android phones</h3><p>Focused pocket workflows, compact performance views and safe cross-device settings synchronization.</p><strong>PLANNED</strong></article>
+        </div>
+      </section>
+
+      <section class="section maker-section" id="maker">
+        <div class="maker-shell reveal" data-spotlight-card>
+          <div class="maker-intro">
+            <span class="eyebrow">BEHIND RUSHLINK</span>
+            <h2>The editor I wanted did not exist,<br /><span>so I built RushLink.</span></h2>
+            <p>I designed and built RushLink as an end-to-end product: understanding an undocumented hardware interface, shaping complex musician workflows, building the cross-platform application, and creating the testing and release systems around it.</p>
+            <p>It is the sort of project I enjoy: technically awkward, close to the people using it and broad enough that the interface matters as much as the code behind it.</p>
+            <div class="maker-actions">
+              <a class="button button--primary button--large magnetic" href="about.html#contact"><span>Get in touch</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+              <a class="button button--ghost button--large" href="#flagship">See the product work</a>
+            </div>
+          </div>
+
+          <div class="maker-proof">
+            <div class="maker-proof__heading"><span>WHAT RUSHLINK DEMONSTRATES</span><small>One product · full lifecycle</small></div>
+            <div class="maker-capabilities">
+              <article><span>01</span><div><b>Product and UX thinking</b><p>Turning dense device workflows into TonePilot, StageHand and recoverable Change History experiences.</p></div></article>
+              <article><span>02</span><div><b>Cross-platform engineering</b><p>React, TypeScript, Zustand, Rust and Tauri brought together as a responsive desktop product with mobile foundations.</p></div></article>
+              <article><span>03</span><div><b>Hardware and API integration</b><p>Mapping an undocumented local device API into live, capability-aware controls with explicit safety boundaries.</p></div></article>
+              <article><span>04</span><div><b>Quality and delivery</b><p>High-value automated coverage, real browser journeys, native tests, secure release checks and Windows/macOS pipelines.</p></div></article>
+            </div>
+            <div class="maker-evidence">
+              <span><b>95%+</b><small>tested coverage</small></span>
+              <span><b>3</b><small>device profiles</small></span>
+              <span><b>2</b><small>desktop targets</small></span>
+              <span><b>1</b><small>end-to-end product</small></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="alpha-banner reveal">
+        <div class="alpha-banner__signal" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div><span class="eyebrow">EARLY ALPHA · EXPECT MOVEMENT</span><h2>Built in public spirit.<br /><span>Improving with every session.</span></h2><p>RushLink is already ambitious, but it is not finished. Expect regular design refinement, broader testing, stronger compatibility and more platforms. Your backups and feedback matter during this phase.</p></div>
+        <a class="button button--support button--large" href="https://ko-fi.com/mattc_" target="_blank" rel="noopener noreferrer">Back the next release on Ko-fi <svg viewBox="0 0 24 24"><path d="M6 8h11v7a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5V8Zm11 2h1a3 3 0 0 1 0 6h-1"/></svg></a>
+      </section>
+
+      <section class="download-section" id="download">
+        <div class="download-orbit" aria-hidden="true"><i></i><i></i><i></i></div>
+        <div class="download-card reveal">
+          <img src="assets/rushlink.svg" alt="RushLink" width="112" height="112" />
+          <span class="eyebrow">READY WHEN YOUR PEDAL IS</span>
+          <h2>Take the bigger view.</h2>
+          <p>Download the current desktop alpha and give your Flex Prime, Prime or Core a workflow that feels as ambitious as your sound.</p>
+          <div class="download-actions"><a class="button button--primary button--large magnetic" data-release-link href="#"><span>Download RushLink</span><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></svg></a><a class="button button--ghost button--large" href="#docs">Read the quick start</a></div>
+          <small>Desktop early alpha · Flex Prime, Prime & Core · Free to use</small>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-brand"><img src="assets/rushlink.svg" alt="" /><span><strong>RushLink</strong><small>Shape tones. Own the stage.</small></span></div>
+      <div class="footer-links"><span>EXPLORE</span><a href="#tonepilot">TonePilot</a><a href="#stagehand">StageHand</a><a href="#change-history">Change History</a><a href="#features">Features</a><a href="about.html">Hire Me!</a><a href="#roadmap">Roadmap</a></div>
+      <div class="footer-links"><span>SUPPORT</span><a href="#docs">Documentation</a><a data-release-link href="#">Releases</a><a href="https://ko-fi.com/mattc_" target="_blank" rel="noopener noreferrer">Buy me a coffee</a><a href="privacy.html">Privacy</a></div>
+      <div class="footer-meta"><p>RushLink is an independent, unofficial companion. It is not affiliated with or endorsed by HeadRush or inMusic.</p><small>© <span data-year></span> RushLink. Early alpha software.</small></div>
+    </footer>
+
+    <aside class="release-stats" data-release-stats hidden aria-live="polite">
+      <div class="release-stats__header"><span><i></i>Release telemetry</span><button type="button" aria-label="Close release telemetry" data-close-stats>×</button></div>
+      <p>Public GitHub Release asset totals. No visitor tracking is installed.</p>
+      <dl><div><dt>Total downloads</dt><dd data-stat-downloads>—</dd></div><div><dt>Published releases</dt><dd data-stat-releases>—</dd></div><div><dt>Latest release</dt><dd data-stat-latest>—</dd></div></dl>
+      <small data-stat-repository>Resolving repository…</small>
+    </aside>
+  </body>
+</html>
