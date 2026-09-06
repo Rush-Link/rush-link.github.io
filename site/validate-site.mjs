@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import path from "node:path";
+import { readFileSync, readdirSync } from "node:fs";
 import { pathToFileURL } from "node:url";
 import { chromium } from "playwright";
 
@@ -130,7 +131,7 @@ async function validateAboutViewport(name, viewport) {
   assert.equal(await page.locator('a[href="https://www.linkedin.com/in/matcygal"]').count(), 3);
   assert.equal(await page.locator('a[href="https://github.com/matcygal"]').count(), 4);
   assert.equal(await page.locator("[data-contact-form]").count(), 1);
-  assert.equal(await page.locator("[data-contact-form]").getAttribute("action"), "https://formspree.io/f/matcygal@gmail.com");
+  assert.equal(await page.locator("[data-contact-form]").getAttribute("action"), null);
   assert.equal(await page.locator("[data-contact-form]").getAttribute("method"), "POST");
   assert.equal(await page.locator('[name="name"]').getAttribute("required"), "");
   assert.equal(await page.locator('[name="email"]').getAttribute("type"), "email");
@@ -147,69 +148,51 @@ await validateAboutViewport("about desktop", { width: 1440, height: 1000 });
 await validateAboutViewport("about tablet", { width: 820, height: 1080 });
 await validateAboutViewport("about phone", { width: 390, height: 844 });
 
-// Intercept the native POST so validation never sends an actual enquiry.
-async function validateContactSubmission(file, topic, source, javaScriptEnabled) {
+// Check every published text file, including documentation and this script.
+for (const file of readdirSync("site", { recursive: true })) {
+  if (!/\.(?:html|js|mjs|md|css|txt)$/.test(file)) continue;
+  const source = readFileSync(path.join("site", file), "utf8");
+  assert.doesNotMatch(source, /[a-z0-9._%+-]+@gmail\.com/i, `${file}: recipient email must not be published`);
+  assert.doesNotMatch(source, /href=["']mailto:/i, `${file}: direct email links must not be published`);
+}
+
+async function validateContactUnavailable(file, javaScriptEnabled) {
   const page = await browser.newPage({ viewport: { width: 1440, height: 1000 }, javaScriptEnabled });
-  const endpoint = "https://formspree.io/f/matcygal@gmail.com";
   const submissions = [];
-  await page.route(endpoint, async (route) => {
-    const request = route.request();
-    submissions.push({
-      method: request.method(),
-      fields: Object.fromEntries(new URLSearchParams(request.postData() ?? "")),
-    });
-    await route.fulfill({ status: 200, contentType: "text/html", body: "<!doctype html><title>Form accepted</title><h1>Thanks</h1>" });
+  await page.route("**/*", async (route) => {
+    if (route.request().method() === "POST") {
+      submissions.push(route.request().url());
+      await route.abort();
+    } else {
+      await route.continue();
+    }
   });
   await page.goto(pathToFileURL(path.resolve(`site/${file}`)).href, { waitUntil: "load" });
   const form = page.locator("[data-contact-form]");
-  assert.equal(await form.getAttribute("action"), endpoint);
-  assert.equal(await form.getAttribute("method"), "POST");
-  assert.equal(await page.locator('a[href="mailto:matcygal@gmail.com"]').count(), 1);
+  assert.equal(await form.getAttribute("action"), null);
+  assert.equal(await form.getAttribute("aria-disabled"), "true");
+  for (const control of await form.locator("input, select, textarea, button").all()) {
+    assert.equal(await control.isDisabled(), true, `${file}: unavailable controls must stay disabled`);
+  }
   await form.scrollIntoViewIfNeeded();
   await page.waitForFunction(() => getComputedStyle(document.querySelector(".contact-shell")).opacity === "1");
-  await form.locator('button[type="submit"]').click();
-  assert.equal(submissions.length, 0, `${file}: empty form must not submit`);
-  await form.locator('[name="name"]').fill("Test Person");
-  await form.locator('[name="email"]').fill("invalid-email");
-  await form.locator('[name="topic"]').selectOption({ label: topic });
-  const message = "I would like to discuss a RushLink improvement.";
-  await form.locator('[name="message"]').fill(message);
-  await form.locator('[name="consent"]').check();
-  await form.locator('button[type="submit"]').click();
-  assert.equal(submissions.length, 0, `${file}: invalid email must not submit`);
-  await form.locator('[name="email"]').fill("test@example.com");
-  await form.locator('[name="consent"]').uncheck();
-  await form.locator('button[type="submit"]').click();
-  assert.equal(submissions.length, 0, `${file}: consent is required`);
-  await form.locator('[name="consent"]').check();
+  assert.match(await form.locator("[data-contact-status]").innerText(), /temporarily unavailable/);
+  assert.equal(await form.locator("[data-contact-status]").isVisible(), true);
+  assert.equal(await page.locator('.contact-direct a[href="https://www.linkedin.com/in/matcygal"]').count(), 1);
   if (javaScriptEnabled) {
-    assert.equal(await form.locator("[data-message-count]").innerText(), String(message.length));
+    assert.equal(await form.evaluate((element) => {
+      const event = new Event("submit", { bubbles: true, cancelable: true });
+      element.dispatchEvent(event);
+      return event.defaultPrevented;
+    }), true);
   }
-  await Promise.all([
-    page.waitForURL(endpoint),
-    form.locator('button[type="submit"]').click(),
-  ]);
-  assert.equal(submissions.length, 1);
-  assert.equal(submissions[0].method, "POST");
-  assert.equal(submissions[0].fields.name, "Test Person");
-  assert.equal(submissions[0].fields.email, "test@example.com");
-  assert.equal(submissions[0].fields.topic, topic);
-  assert.equal(submissions[0].fields.message, message);
-  assert.equal(submissions[0].fields.source, source);
-  assert.equal(submissions[0].fields.consent, "on");
-  assert.equal(submissions[0].fields._gotcha, "");
-  assert.equal(await page.getByRole("heading", { name: "Thanks" }).count(), 1);
-  await page.goBack({ waitUntil: "load" });
-  assert.equal(await form.locator('button[type="submit"]').isEnabled(), true);
-  assert.equal(await form.locator("[data-submit-label]").innerText(), "Send enquiry");
-  assert.equal(await form.getAttribute("aria-busy"), null);
-  assert.equal(await form.locator("[data-contact-status]").isHidden(), true);
+  assert.deepEqual(submissions, []);
   await page.close();
 }
 
 for (const javaScriptEnabled of [true, false]) {
-  await validateContactSubmission("index.html", "Bug report", "RushLink homepage", javaScriptEnabled);
-  await validateContactSubmission("about.html", "Permanent role", "RushLink Hire Me page", javaScriptEnabled);
+  await validateContactUnavailable("index.html", javaScriptEnabled);
+  await validateContactUnavailable("about.html", javaScriptEnabled);
 }
 
 const statsPage = await browser.newPage({ viewport: { width: 1280, height: 900 } });
@@ -245,6 +228,7 @@ await privacyPage.goto(pathToFileURL(path.resolve("site/privacy.html")).href, { 
 assert.equal(await privacyPage.getByRole("heading", { name: "Privacy, kept clear." }).count(), 1);
 assert.match(await privacyPage.getByText(/not included in installers/i).innerText(), /not included in installers/i);
 assert.match(await privacyPage.getByText(/website enquiries/i).innerText(), /website enquiries/i);
+assert.equal(await privacyPage.getByText(/do not send enquiry data/i).count(), 2);
 await privacyPage.close();
 
 await browser.close();

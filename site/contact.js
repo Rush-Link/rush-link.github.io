@@ -16,7 +16,11 @@ messageField?.addEventListener("input", updateMessageCount);
 updateMessageCount();
 
 // Use the browser's native POST so Formspree can handle any managed reCAPTCHA.
-contactForm?.addEventListener("submit", () => {
+contactForm?.addEventListener("submit", (event) => {
+  if (!contactForm.getAttribute("action")) {
+    event.preventDefault();
+    return;
+  }
   submitButton?.setAttribute("disabled", "");
   contactForm.setAttribute("aria-busy", "true");
   if (submitLabel) submitLabel.textContent = "Opening secure form…";
@@ -27,6 +31,7 @@ contactForm?.addEventListener("submit", () => {
 
 // Restore the form when a visitor returns from Formspree using Back.
 window.addEventListener("pageshow", () => {
+  if (!contactForm?.getAttribute("action")) return;
   submitButton?.removeAttribute("disabled");
   contactForm?.removeAttribute("aria-busy");
   if (submitLabel) submitLabel.textContent = defaultSubmitLabel;

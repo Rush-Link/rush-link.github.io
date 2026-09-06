@@ -4,13 +4,11 @@ This directory is a dependency-free static GitHub Pages site.
 
 ## Contact form
 
-`index.html` and `about.html` submit enquiries through a standard HTML `POST` to the configured Formspree endpoint. Native submission lets Formspree handle any managed reCAPTCHA check. The shared `contact.js` provides the message counter and a hand-off state while the browser opens Formspree, and restores the controls when a visitor returns using Back.
+The contact forms in `index.html` and `about.html` are temporarily disabled so the owner's email address is not exposed in visible links or form actions. Visitors can use the LinkedIn links beside the forms.
 
-No Formspree package, API key or build step is required. To change the destination, update the form `action` in both `index.html` and `about.html`, plus the endpoint in `validate-site.mjs`. The endpoint is public by design and must never contain a private API key.
+To enable submissions, use a dashboard-generated Formspree endpoint with an opaque form ID. Add that URL as the `action` on both forms, remove `aria-disabled` and the controls' `disabled` attributes, and restore the submit label and status copy. Never put the recipient's email address or a private API key in a public endpoint. Keep the standard HTML `POST` to support Formspree's managed reCAPTCHA flow.
 
-Both forms use the owner-supplied endpoint `https://formspree.io/f/matcygal@gmail.com`. Delivery has not been verified. Formspree's current documentation calls for a dashboard-generated form ID rather than an email address in the URL: https://help.formspree.io/articles/troubleshooting/phasing-out-legacy-forms-email-urls/. If the supplied endpoint shows a setup error, replace it in both pages with the active endpoint from the form's Integration tab. Direct email links are also available beside both forms.
-
-`validate-site.mjs` checks browser validation and intercepts form submissions locally; it does not send messages or prove Formspree delivery.
+The shared `contact.js` handles the message counter and submission state. It blocks submission when no endpoint is configured. `validate-site.mjs` checks that the unavailable forms stay disabled with and without JavaScript and that published site files contain no recipient email address.
 
 ## Preview locally
 

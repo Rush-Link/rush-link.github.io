@@ -131,26 +131,25 @@
             <h2>If this sounds useful<br />to your team, let’s talk.</h2>
             <p>If you need someone who can get into the code, understand the system around it and still keep the person using it in view, I’d be glad to hear what you’re working on.</p>
             <div class="contact-direct">
-              <a href="mailto:matcygal@gmail.com"><span>Email</span><b>matcygal@gmail.com</b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
               <a href="https://www.linkedin.com/in/matcygal" target="_blank" rel="noopener noreferrer"><span>LinkedIn</span><b>linkedin.com/in/matcygal</b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
               <a href="https://github.com/matcygal" target="_blank" rel="noopener noreferrer"><span>GitHub</span><b>github.com/matcygal</b><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
             </div>
           </div>
 
-          <form class="contact-form" action="https://formspree.io/f/matcygal@gmail.com" method="POST" data-contact-form>
-            <input type="hidden" name="_subject" value="New opportunity enquiry from the RushLink website" />
-            <input type="hidden" name="source" value="RushLink Hire Me page" />
-            <label class="contact-form__trap" aria-hidden="true"><span>Leave this field empty</span><input name="_gotcha" type="text" tabindex="-1" autocomplete="off" /></label>
-            <div class="contact-form__heading"><span><b>Tell me what you’re working on</b><small>I’ll receive your message through Formspree.</small></span><em>DIRECT ENQUIRY</em></div>
+          <form class="contact-form" aria-disabled="true" method="POST" data-contact-form>
+            <input disabled type="hidden" name="_subject" value="New opportunity enquiry from the RushLink website" />
+            <input disabled type="hidden" name="source" value="RushLink Hire Me page" />
+            <label class="contact-form__trap" aria-hidden="true"><span>Leave this field empty</span><input disabled name="_gotcha" type="text" tabindex="-1" autocomplete="off" /></label>
+            <div class="contact-form__heading"><span><b>Tell me what you’re working on</b><small>Please use the LinkedIn contact link for now.</small></span><em>DIRECT ENQUIRY</em></div>
             <div class="contact-form__row">
-              <label><span>Your name</span><input name="name" type="text" autocomplete="name" required maxlength="100" placeholder="How should I address you?" /></label>
-              <label><span>Email</span><input name="email" type="email" autocomplete="email" required maxlength="160" placeholder="you@company.com" /></label>
+              <label><span>Your name</span><input disabled name="name" type="text" autocomplete="name" required maxlength="100" placeholder="How should I address you?" /></label>
+              <label><span>Email</span><input disabled name="email" type="email" autocomplete="email" required maxlength="160" placeholder="you@company.com" /></label>
             </div>
-            <label><span>What would you like to discuss?</span><select name="topic" required><option value="">Choose a topic</option><option>Permanent role</option><option>Contract or freelance project</option><option>Product collaboration</option><option>RushLink</option><option>Something else</option></select></label>
-            <label><span>Message</span><textarea name="message" required minlength="20" maxlength="3000" rows="7" placeholder="Tell me about the opportunity, problem or idea…"></textarea><small><span data-message-count>0</span> / 3000</small></label>
-            <label class="contact-form__consent"><input name="consent" type="checkbox" required /><span>I’m happy for these details to be used to respond to this enquiry.</span></label>
-            <div class="contact-form__actions"><button class="button button--primary button--large magnetic" type="submit"><span data-submit-label>Send enquiry</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></button><small>Formspree may ask for a quick anti-spam check before delivery.</small></div>
-            <div class="contact-form__status" data-contact-status role="status" aria-live="polite" hidden>Opening the secure Formspree submission…</div>
+            <label><span>What would you like to discuss?</span><select disabled name="topic" required><option value="">Choose a topic</option><option>Permanent role</option><option>Contract or freelance project</option><option>Product collaboration</option><option>RushLink</option><option>Something else</option></select></label>
+            <label><span>Message</span><textarea disabled name="message" required minlength="20" maxlength="3000" rows="7" placeholder="Tell me about the opportunity, problem or idea…"></textarea><small><span data-message-count>0</span> / 3000</small></label>
+            <label class="contact-form__consent"><input disabled name="consent" type="checkbox" required /><span>I’m happy for these details to be used to respond to this enquiry.</span></label>
+            <div class="contact-form__actions"><button disabled class="button button--primary button--large magnetic" type="submit"><span data-submit-label>Form unavailable</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></button><small>You can still get in touch through LinkedIn.</small></div>
+            <div class="contact-form__status" data-contact-status role="status" aria-live="polite">This form is temporarily unavailable. Please use the LinkedIn link to get in touch.</div>
           </form>
         </div>
       </section>

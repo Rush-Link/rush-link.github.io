@@ -131,6 +131,7 @@ html,body{overflow-x:clip}
 @media(prefers-reduced-motion:reduce){.maker-status i{animation:none}}
 
 .hero-support{margin-top:22px}
+.contact-form:not([action]) button:disabled{cursor:not-allowed}
 .download-support{margin-top:28px;padding-top:24px;border-top:1px solid var(--line)}
 .download-support p{margin:0 auto 14px;font-size:13px}
 .about-work__actions{flex-wrap:wrap}
