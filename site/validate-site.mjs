@@ -23,6 +23,8 @@ async function validateViewport(name, viewport) {
   assert.equal(await page.locator("#change-history").count(), 1);
   assert.equal(await page.locator("#support").count(), 1);
   assert.equal(await page.locator("#maker").count(), 1);
+  assert.equal(await page.locator("main > section").last().getAttribute("id"), "contact");
+  assert.equal(await page.locator("#contact [data-contact-form]").count(), 1);
   assert.equal(await page.locator("#docs-tonepilot").count(), 1);
   assert.equal(await page.locator("#docs-stagehand").count(), 1);
   assert.equal(await page.locator("#docs-history").count(), 1);
@@ -40,11 +42,13 @@ async function validateViewport(name, viewport) {
   assert.equal(await page.locator(".maker-capabilities article").count(), 4);
   assert.equal(await page.getByText("95%+", { exact: true }).count(), 1);
   assert.equal(await page.getByText(/Completely optional\. Any amount helps/i).count(), 1);
-  assert.equal(await page.locator(".support-share").getAttribute("href"), "about.html#contact");
+  assert.equal(await page.locator(".support-share").getAttribute("href"), "#contact");
   const supportLinks = page.locator('a[href="https://ko-fi.com/mattc_"]');
-  assert.equal(await supportLinks.count(), 4);
+  assert.equal(await supportLinks.count(), 8);
   assert.deepEqual((await supportLinks.allTextContents()).map((label) => label.trim()), [
-    "Buy me a coffee", "Buy me a coffee on Ko-fi", "Back the next release on Ko-fi", "Buy me a coffee",
+    "Buy me a coffee", "Buy me a coffee on Ko-fi", "Help RushLink grow on Ko-fi",
+    "Buy me a coffee on Ko-fi", "Back the next release on Ko-fi", "Support RushLink on Ko-fi",
+    "Ko-fiBuy me a coffee", "Buy me a coffee",
   ]);
   for (const link of await supportLinks.all()) {
     assert.equal(await link.getAttribute("target"), "_blank");
@@ -103,7 +107,9 @@ async function validateAboutViewport(name, viewport) {
   assert.equal(await page.getByRole("heading", { name: /I build useful software/i }).count(), 1);
   assert.equal(await page.getByText("LOOKING FOR NEW OPPORTUNITIES", { exact: true }).count(), 0);
   assert.equal(await page.getByText("Open Oct 2026", { exact: true }).count(), 0);
-  assert.equal(((await page.locator("body").innerText()).match(/October/g) ?? []).length, 1);
+  assert.doesNotMatch(await page.locator(".about-hero").innerText(), /September|October|network automation|\u2014/i);
+  assert.match(await page.locator(".about-hero__open").innerText(), /current role is wrapping up soon/);
+  assert.equal(await page.locator('a[href="https://ko-fi.com/mattc_"]').count(), 2);
   assert.equal(await page.locator(".experience-card").count(), 4);
   assert.deepEqual(await page.locator("main > section").evaluateAll((sections) => sections.map((section) => section.id)), [
     "story", "career", "work", "experience", "contact",
@@ -124,37 +130,12 @@ async function validateAboutViewport(name, viewport) {
   assert.equal(await page.locator('a[href="https://www.linkedin.com/in/matcygal"]').count(), 3);
   assert.equal(await page.locator('a[href="https://github.com/matcygal"]').count(), 4);
   assert.equal(await page.locator("[data-contact-form]").count(), 1);
-  assert.equal(await page.locator("[data-contact-form]").getAttribute("action"), "https://formspree.io/f/xolpkjqm");
+  assert.equal(await page.locator("[data-contact-form]").getAttribute("action"), "https://formspree.io/f/matcygal@gmail.com");
   assert.equal(await page.locator("[data-contact-form]").getAttribute("method"), "POST");
   assert.equal(await page.locator('[name="name"]').getAttribute("required"), "");
   assert.equal(await page.locator('[name="email"]').getAttribute("type"), "email");
   assert.equal(await page.locator('[name="message"]').getAttribute("maxlength"), "3000");
 
-  if (name === "about desktop") {
-    let submittedRequest;
-    await page.route("https://formspree.io/f/xolpkjqm", async (route) => {
-      const request = route.request();
-      submittedRequest = {
-        method: request.method(),
-        fields: Object.fromEntries(new URLSearchParams(request.postData() ?? "")),
-      };
-      await route.fulfill({ status: 200, contentType: "text/html", body: "<!doctype html><title>Form accepted</title><h1>Thanks</h1>" });
-    });
-    await page.locator('[name="name"]').fill("Test Person");
-    await page.locator('[name="email"]').fill("test@example.com");
-    await page.locator('[name="topic"]').selectOption({ label: "Permanent role" });
-    await page.locator('[name="message"]').fill("I would like to discuss a product engineering opportunity.");
-    await page.locator('[name="consent"]').check();
-    await Promise.all([
-      page.waitForURL("https://formspree.io/f/xolpkjqm"),
-      page.locator("[data-contact-form] button[type=submit]").click(),
-    ]);
-    assert.equal(submittedRequest?.method, "POST");
-    assert.equal(submittedRequest?.fields.email, "test@example.com");
-    assert.equal(submittedRequest?.fields.topic, "Permanent role");
-    assert.equal(submittedRequest?.fields.message, "I would like to discuss a product engineering opportunity.");
-    assert.equal(await page.getByRole("heading", { name: "Thanks" }).count(), 1);
-  }
 
   const horizontalOverflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
   assert.ok(horizontalOverflow <= 1, `${name} has ${horizontalOverflow}px horizontal overflow`);
@@ -165,6 +146,71 @@ async function validateAboutViewport(name, viewport) {
 await validateAboutViewport("about desktop", { width: 1440, height: 1000 });
 await validateAboutViewport("about tablet", { width: 820, height: 1080 });
 await validateAboutViewport("about phone", { width: 390, height: 844 });
+
+// Intercept the native POST so validation never sends an actual enquiry.
+async function validateContactSubmission(file, topic, source, javaScriptEnabled) {
+  const page = await browser.newPage({ viewport: { width: 1440, height: 1000 }, javaScriptEnabled });
+  const endpoint = "https://formspree.io/f/matcygal@gmail.com";
+  const submissions = [];
+  await page.route(endpoint, async (route) => {
+    const request = route.request();
+    submissions.push({
+      method: request.method(),
+      fields: Object.fromEntries(new URLSearchParams(request.postData() ?? "")),
+    });
+    await route.fulfill({ status: 200, contentType: "text/html", body: "<!doctype html><title>Form accepted</title><h1>Thanks</h1>" });
+  });
+  await page.goto(pathToFileURL(path.resolve(`site/${file}`)).href, { waitUntil: "load" });
+  const form = page.locator("[data-contact-form]");
+  assert.equal(await form.getAttribute("action"), endpoint);
+  assert.equal(await form.getAttribute("method"), "POST");
+  assert.equal(await page.locator('a[href="mailto:matcygal@gmail.com"]').count(), 1);
+  await form.scrollIntoViewIfNeeded();
+  await page.waitForFunction(() => getComputedStyle(document.querySelector(".contact-shell")).opacity === "1");
+  await form.locator('button[type="submit"]').click();
+  assert.equal(submissions.length, 0, `${file}: empty form must not submit`);
+  await form.locator('[name="name"]').fill("Test Person");
+  await form.locator('[name="email"]').fill("invalid-email");
+  await form.locator('[name="topic"]').selectOption({ label: topic });
+  const message = "I would like to discuss a RushLink improvement.";
+  await form.locator('[name="message"]').fill(message);
+  await form.locator('[name="consent"]').check();
+  await form.locator('button[type="submit"]').click();
+  assert.equal(submissions.length, 0, `${file}: invalid email must not submit`);
+  await form.locator('[name="email"]').fill("test@example.com");
+  await form.locator('[name="consent"]').uncheck();
+  await form.locator('button[type="submit"]').click();
+  assert.equal(submissions.length, 0, `${file}: consent is required`);
+  await form.locator('[name="consent"]').check();
+  if (javaScriptEnabled) {
+    assert.equal(await form.locator("[data-message-count]").innerText(), String(message.length));
+  }
+  await Promise.all([
+    page.waitForURL(endpoint),
+    form.locator('button[type="submit"]').click(),
+  ]);
+  assert.equal(submissions.length, 1);
+  assert.equal(submissions[0].method, "POST");
+  assert.equal(submissions[0].fields.name, "Test Person");
+  assert.equal(submissions[0].fields.email, "test@example.com");
+  assert.equal(submissions[0].fields.topic, topic);
+  assert.equal(submissions[0].fields.message, message);
+  assert.equal(submissions[0].fields.source, source);
+  assert.equal(submissions[0].fields.consent, "on");
+  assert.equal(submissions[0].fields._gotcha, "");
+  assert.equal(await page.getByRole("heading", { name: "Thanks" }).count(), 1);
+  await page.goBack({ waitUntil: "load" });
+  assert.equal(await form.locator('button[type="submit"]').isEnabled(), true);
+  assert.equal(await form.locator("[data-submit-label]").innerText(), "Send enquiry");
+  assert.equal(await form.getAttribute("aria-busy"), null);
+  assert.equal(await form.locator("[data-contact-status]").isHidden(), true);
+  await page.close();
+}
+
+for (const javaScriptEnabled of [true, false]) {
+  await validateContactSubmission("index.html", "Bug report", "RushLink homepage", javaScriptEnabled);
+  await validateContactSubmission("about.html", "Permanent role", "RushLink Hire Me page", javaScriptEnabled);
+}
 
 const statsPage = await browser.newPage({ viewport: { width: 1280, height: 900 } });
 await statsPage.route("https://api.github.com/repos/rush-link/rush-link.github.io/releases?per_page=100", async (route) => {

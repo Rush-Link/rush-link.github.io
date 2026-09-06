@@ -4,9 +4,13 @@ This directory is a dependency-free static GitHub Pages site.
 
 ## Contact form
 
-`about.html` submits opportunity enquiries through a standard HTML `POST` to the configured Formspree endpoint. This is intentional: the form currently uses Formspree's managed reCAPTCHA flow, which rejects custom AJAX submissions unless reCAPTCHA is disabled or configured with a custom key. `about.js` adds a hand-off state while the browser opens Formspree's secure confirmation response.
+`index.html` and `about.html` submit enquiries through a standard HTML `POST` to the configured Formspree endpoint. Native submission lets Formspree handle any managed reCAPTCHA check. The shared `contact.js` provides the message counter and a hand-off state while the browser opens Formspree, and restores the controls when a visitor returns using Back.
 
-No Formspree package, API key or build step is required. To change the destination, update the form `action` in `about.html`. The endpoint is public by design and must never contain a private API key.
+No Formspree package, API key or build step is required. To change the destination, update the form `action` in both `index.html` and `about.html`, plus the endpoint in `validate-site.mjs`. The endpoint is public by design and must never contain a private API key.
+
+Both forms use the owner-supplied endpoint `https://formspree.io/f/matcygal@gmail.com`. Delivery has not been verified. Formspree's current documentation calls for a dashboard-generated form ID rather than an email address in the URL: https://help.formspree.io/articles/troubleshooting/phasing-out-legacy-forms-email-urls/. If the supplied endpoint shows a setup error, replace it in both pages with the active endpoint from the form's Integration tab. Direct email links are also available beside both forms.
+
+`validate-site.mjs` checks browser validation and intercepts form submissions locally; it does not send messages or prove Formspree delivery.
 
 ## Preview locally
 

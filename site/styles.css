@@ -130,6 +130,11 @@ html,body{overflow-x:clip}
 @media(max-width:560px){.maker-section{width:calc(100% - 24px)}.maker-shell{padding:29px 21px;border-radius:23px}.maker-status{white-space:normal}.maker-intro h2{font-size:36px;letter-spacing:-1.7px}.maker-actions{flex-direction:column}.maker-actions .button{width:100%}.maker-proof{padding:14px}.maker-proof__heading{align-items:flex-start;flex-direction:column;gap:4px}.maker-capabilities article{grid-template-columns:34px 1fr}.maker-evidence{grid-template-columns:1fr 1fr}.maker-evidence span{min-height:68px}.maker-shell:before{display:none}}
 @media(prefers-reduced-motion:reduce){.maker-status i{animation:none}}
 
+.hero-support{margin-top:22px}
+.download-support{margin-top:28px;padding-top:24px;border-top:1px solid var(--line)}
+.download-support p{margin:0 auto 14px;font-size:13px}
+.about-work__actions{flex-wrap:wrap}
+
 /* Dedicated maker, opportunities and contact page */
 .about-page{background:radial-gradient(circle at 78% 4%,rgba(var(--violet-rgb),.1),transparent 28%),radial-gradient(circle at 8% 36%,rgba(var(--cyan-rgb),.055),transparent 28%),var(--bg)}
 .about-page .site-header{width:min(1080px,calc(100% - 32px))}.about-page .site-brand{min-width:210px}.about-availability{border-color:rgba(98,221,161,.22);background:rgba(98,221,161,.055);color:#8be0b3}.about-availability i{background:var(--green)}
