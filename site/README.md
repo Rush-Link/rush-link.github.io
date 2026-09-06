@@ -4,11 +4,11 @@ This directory is a dependency-free static GitHub Pages site.
 
 ## Contact form
 
-The contact forms in `index.html` and `about.html` are temporarily disabled so the owner's email address is not exposed in visible links or form actions. Visitors can use the LinkedIn links beside the forms.
+The contact forms in `index.html` and `about.html` submit to `https://formspree.io/f/mdeolqgb` using a standard HTML `POST`, which lets Formspree handle any managed reCAPTCHA check. The recipient's email address is not published in visible links or form actions. LinkedIn remains available beside the forms.
 
-To enable submissions, use a dashboard-generated Formspree endpoint with an opaque form ID. Add that URL as the `action` on both forms, remove `aria-disabled` and the controls' `disabled` attributes, and restore the submit label and status copy. Never put the recipient's email address or a private API key in a public endpoint. Keep the standard HTML `POST` to support Formspree's managed reCAPTCHA flow.
+To change the destination, update the form `action` on both pages and the endpoint in `validate-site.mjs`. Use a dashboard-generated Formspree form ID; never include the recipient's email address or a private API key in a public endpoint.
 
-The shared `contact.js` handles the message counter and submission state. It blocks submission when no endpoint is configured. `validate-site.mjs` checks that the unavailable forms stay disabled with and without JavaScript and that published site files contain no recipient email address.
+The shared `contact.js` handles the message counter and submission state, blocks submission when no endpoint is configured, and restores controls after returning using Back. `validate-site.mjs` checks validation and native POST submissions with and without JavaScript and checks that published site files contain no recipient email address. Submissions are intercepted locally, so these checks do not send messages or verify email delivery.
 
 ## Preview locally
 
