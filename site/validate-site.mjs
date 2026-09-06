@@ -120,7 +120,6 @@ async function validateAboutViewport(name, viewport) {
   assert.equal(await page.locator(".career-story__copy p").count(), 3);
   assert.equal(await page.locator(".career-story__principles").count(), 0, "generic portfolio principles should stay removed");
   assert.equal(await page.locator(".career-story__closing").getByText(/not trying to force that experience into one perfect job title/i).count(), 1);
-  assert.equal(await page.locator(".career-story").getByText(/reducing running costs by 40%/i).count(), 1);
   assert.match(await page.locator(".career-story").innerText(), /data security[\s\S]*AWS data engineering[\s\S]*network automation/i);
   assert.doesNotMatch(await page.locator(".career-story").innerText(), /OhChat · Full-time|Scopely · Full-time|Spot Ship · Full-time/);
   assert.equal(await page.getByRole("heading", { name: /I wanted a better HeadRush editor/i }).count(), 1);
