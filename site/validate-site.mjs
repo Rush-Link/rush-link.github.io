@@ -75,6 +75,11 @@ async function validateViewport(name, viewport) {
     await page.locator("[data-menu-button]").click();
     assert.equal(await page.locator("[data-mobile-menu]").getAttribute("class"), "mobile-nav open");
     await page.keyboard.press("Escape");
+    await page.locator("[data-menu-button]").click();
+    await page.setViewportSize({ width: viewport.height, height: viewport.width });
+    await page.waitForFunction(() => !document.body.classList.contains("menu-open"));
+    assert.notEqual(await page.locator("body").evaluate((element) => getComputedStyle(element).overflow), "hidden");
+    await page.setViewportSize(viewport);
   } else {
     await page.locator('[data-demo-nav="stagehand"]').click({ force: true });
     assert.equal(await page.locator('[data-demo-nav="stagehand"]').getAttribute("aria-pressed"), "true");

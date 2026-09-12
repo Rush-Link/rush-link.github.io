@@ -88,6 +88,18 @@ menuButton?.addEventListener("click", () => {
 mobileMenu?.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeMenu));
 window.addEventListener("keydown", (event) => { if (event.key === "Escape") closeMenu(); });
 
+const menuViewport = window.matchMedia("(max-width: 820px)");
+menuViewport.addEventListener("change", ({ matches }) => {
+  const focused = document.activeElement;
+  if (matches) {
+    if (focused?.closest(".desktop-nav")) menuButton?.focus({ preventScroll: true });
+    return;
+  }
+  const restoreFocus = focused === menuButton || mobileMenu?.contains(focused);
+  closeMenu();
+  if (restoreFocus) document.querySelector(".desktop-nav a")?.focus({ preventScroll: true });
+});
+
 const demoTabs = [...document.querySelectorAll("[data-demo-tab]")];
 const demoPanels = [...document.querySelectorAll("[data-demo-panel]")];
 const demoNavItems = [...document.querySelectorAll("[data-demo-nav]")];
