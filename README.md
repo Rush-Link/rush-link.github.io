@@ -2,7 +2,7 @@
 
 This public repository hosts the [RushLink website](https://rush-link.github.io/) and its downloadable desktop releases.
 
-RushLink is a free companion app for HeadRush Prime, Flex Prime and Core. Its flagship TonePilot and StageHand workspaces make tone auditioning, rig management and live control easier away from the pedal screen.
+RushLink is a free companion app for HeadRush Prime, Flex Prime and Core. Its flagship ToneMod and StageHand workspaces make tone auditioning, rig management and live control easier away from the pedal screen.
 
 ## Early alpha
 

@@ -19,18 +19,18 @@ async function validateViewport(name, viewport) {
 
   assert.match(await page.title(), /RushLink/);
   assert.equal(await page.locator("h1").innerText(), "Shape tones.\nOwn the stage.");
-  assert.equal(await page.locator("#tonepilot").count(), 1);
+  assert.equal(await page.locator("#tonemod").count(), 1);
   assert.equal(await page.locator("#stagehand").count(), 1);
   assert.equal(await page.locator("#change-history").count(), 1);
   assert.equal(await page.locator("#support").count(), 1);
   assert.equal(await page.locator("#maker").count(), 1);
   assert.equal(await page.locator("main > section").last().getAttribute("id"), "contact");
   assert.equal(await page.locator("#contact [data-contact-form]").count(), 1);
-  assert.equal(await page.locator("#docs-tonepilot").count(), 1);
+  assert.equal(await page.locator("#docs-tonemod").count(), 1);
   assert.equal(await page.locator("#docs-stagehand").count(), 1);
   assert.equal(await page.locator("#docs-history").count(), 1);
   assert.equal(await page.locator('[aria-label="Animated RushLink application preview"]').count(), 1);
-  assert.equal(await page.getByText("TONEPILOT · AUDITION WORKSPACE", { exact: true }).count(), 1);
+  assert.equal(await page.getByText("TONEMOD · AUDITION WORKSPACE", { exact: true }).count(), 1);
   assert.equal(await page.getByText("Prime family connected", { exact: true }).count(), 1);
   assert.equal(await page.getByText("14-slot rig editing", { exact: true }).count(), 0);
   assert.equal(await page.getByText("Flex Prime · Prime · Core", { exact: true }).first().isVisible(), true);
