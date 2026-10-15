@@ -4,15 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#070b11" />
-    <meta name="description" content="An experienced software engineer working across backend systems, data, automation and product design. Creator of RushLink." />
-    <meta property="og:title" content="Engineer &amp; Product Designer — RushLink" />
+    <meta name="description" content="An experienced software engineer working across backend systems, data, automation and product design. Creator of RushLink by Cygma Audio." />
+    <meta property="og:title" content="Engineer &amp; Product Designer — RushLink by Cygma Audio" />
     <meta property="og:description" content="I build software across backend systems, data, automation and product design. RushLink is the latest example of how I work." />
-    <meta property="og:image" content="assets/rushlink-social-card.png" />
+    <meta property="og:image" content="https://rush-link.github.io/assets/rushlink-social-card.png" />
+    <meta property="og:image:alt" content="RushLink by Cygma Audio. Shape tones. Own the stage." />
+    <meta property="og:site_name" content="RushLink by Cygma Audio" />
     <meta property="og:type" content="profile" />
     <meta name="twitter:card" content="summary_large_image" />
-    <title>Engineer &amp; Product Designer — RushLink</title>
+    <meta name="twitter:image" content="https://rush-link.github.io/assets/rushlink-social-card.png" />
+    <meta name="twitter:image:alt" content="RushLink by Cygma Audio. Shape tones. Own the stage." />
+    <title>Engineer &amp; Product Designer — RushLink by Cygma Audio</title>
     <link rel="icon" type="image/svg+xml" href="assets/rushlink.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <script src="theme.js"></script>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="brand.css" />
+    <link rel="stylesheet" href="themes.css" />
     <script src="script.js" defer></script>
     <script src="contact.js" defer></script>
     <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
@@ -27,9 +36,9 @@
     <div class="noise" aria-hidden="true"></div>
 
     <header class="site-header" data-header>
-      <a class="site-brand" href="index.html" aria-label="RushLink home">
-        <img src="assets/rushlink.svg" alt="" width="46" height="46" />
-        <span><strong>RushLink</strong><small>Engineer &amp; product designer</small></span>
+      <a class="site-brand" href="index.html" aria-label="RushLink by Cygma Audio home">
+        <img src="assets/rushlink-mark.svg" data-theme-dark="assets/rushlink-mark.svg" data-theme-light="assets/rushlink-mark-light.svg" alt="" width="66" height="44" />
+        <small>by Cygma Audio</small>
       </a>
       <nav class="desktop-nav" aria-label="Primary navigation">
         <a href="#story">Profile</a>
@@ -39,6 +48,7 @@
         <a href="#contact">Contact</a>
       </nav>
       <div class="header-actions">
+        <label class="theme-control"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9Z"/></svg><select data-theme-select aria-label="Colour theme"><option value="system">System</option><option value="dark">Dark</option><option value="light">Light</option></select></label>
         <a class="button button--small button--ghost" href="index.html">Back to RushLink</a>
         <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu" data-menu-button><span></span><span></span></button>
       </div>
@@ -98,7 +108,7 @@
       </section>
 
       <section class="about-work" id="work">
-        <div class="about-work__lead reveal"><span class="eyebrow">A PROJECT OF MY OWN</span><h2>I wanted a better HeadRush editor,<br /><span>so I started building it.</span></h2><p>The hardware is powerful, but some everyday jobs are awkward on its screen and the supplied web editor did not cover everything I needed. I started by mapping the undocumented API, then turned that work into the desktop application I wanted to use.</p><p>It has let me do the whole job: work out which problems are worth solving, design the interactions, build the application, test it with a real device and document it for other musicians. It is the clearest example of the way I like to work.</p></div>
+        <div class="about-work__lead reveal"><span class="eyebrow">A PROJECT OF MY OWN</span><h2>I wanted a better HeadRush editor,<br /><span>so I started building it.</span></h2><p>The hardware is powerful, but some everyday jobs are awkward on its screen and the supplied web editor did not cover everything I needed. I started by mapping the undocumented API, then turned that work into RushLink by Cygma Audio, the desktop application I wanted to use.</p><p>It has let me do the whole job: work out which problems are worth solving, design the interactions, build the application, test it with a real device and document it for other musicians. It is the clearest example of the way I like to work.</p></div>
         <div class="about-work__flow reveal" aria-label="What building RushLink involved">
           <article><span>DEVICE API</span><b>Understand the thing properly</b><p>Mapped an undocumented API and checked assumptions against a real HeadRush device.</p></article>
           <i aria-hidden="true"></i>
@@ -137,7 +147,7 @@
           </div>
 
           <form class="contact-form" action="https://formspree.io/f/mdeolqgb" method="POST" data-contact-form>
-            <input type="hidden" name="_subject" value="New opportunity enquiry from the RushLink website" />
+            <input type="hidden" name="_subject" value="New opportunity enquiry from the RushLink by Cygma Audio website" />
             <input type="hidden" name="source" value="RushLink Hire Me page" />
             <label class="contact-form__trap" aria-hidden="true"><span>Leave this field empty</span><input name="_gotcha" type="text" tabindex="-1" autocomplete="off" /></label>
             <div class="contact-form__heading"><span><b>Tell me what you’re working on</b><small>Tell me about your project or opportunity.</small></span><em>DIRECT ENQUIRY</em></div>
@@ -156,10 +166,10 @@
     </main>
 
     <footer class="site-footer about-footer">
-      <div class="footer-brand"><img src="assets/rushlink.svg" alt="" /><span><strong>RushLink</strong><small>Engineer × product designer</small></span></div>
+      <div class="footer-brand"><img class="product-lockup" src="assets/rushlink-compact.svg" data-theme-dark="assets/rushlink-compact.svg" data-theme-light="assets/rushlink-compact-light.svg" alt="RushLink by Cygma Audio" width="160" height="136" /><small>Engineer × product designer</small></div>
       <div class="footer-links"><span>PROFILE</span><a href="#story">About</a><a href="#career">My path</a><a href="#work">RushLink</a><a href="#experience">How I help</a><a href="#contact">Contact</a></div>
-      <div class="footer-links"><span>CONNECT</span><a href="https://www.linkedin.com/in/matcygal" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/matcygal" target="_blank" rel="noopener noreferrer">GitHub</a><a href="index.html">RushLink product</a><a href="https://ko-fi.com/mattc_" target="_blank" rel="noopener noreferrer">Buy me a coffee on Ko-fi</a></div>
-      <div class="footer-meta"><p>LinkedIn has my full work history; this page shows how I think and what I build.</p><small>© <span data-year></span> RushLink.</small></div>
+      <div class="footer-links"><span>CONNECT</span><a href="https://www.linkedin.com/in/matcygal" target="_blank" rel="noopener noreferrer">LinkedIn</a><a href="https://github.com/matcygal" target="_blank" rel="noopener noreferrer">GitHub</a><a href="index.html">RushLink product</a><a href="https://github.com/Rush-Link/RushLink-App" target="_blank" rel="noopener noreferrer">Source &amp; contribute</a><a href="https://ko-fi.com/mattc_" target="_blank" rel="noopener noreferrer">Buy me a coffee on Ko-fi</a></div>
+      <div class="footer-meta"><p>LinkedIn has my full work history; this page shows how I think and what I build.</p><small>© <span data-year></span> Cygma Audio.</small></div>
     </footer>
   </body>
 </html>

@@ -4,18 +4,39 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#070b11" />
-    <meta name="description" content="RushLink is an early-alpha desktop companion for the latest HeadRush Prime family—Flex Prime, Prime and Core—built around ToneMod, StageHand and recoverable rig experimentation with Change History." />
-    <meta property="og:title" content="RushLink — Shape tones. Own the stage." />
-    <meta property="og:description" content="A modern HeadRush companion featuring ToneMod, StageHand and meaningful per-rig Change History. Desktop early alpha available now." />
-    <meta property="og:image" content="assets/rushlink-social-card.png" />
+    <meta name="description" content="RushLink by Cygma Audio is a free, open-source HeadRush companion targeting firmware 5.2.0. Verified on Flex Prime; Prime and Core still need physical verification. Discover ToneMod, StageHand and Change History." />
+    <meta property="og:title" content="RushLink by Cygma Audio — Shape tones. Own the stage." />
+    <meta property="og:description" content="Free, open-source HeadRush companion targeting firmware 5.2.0, with ToneMod, StageHand and Change History. Live device verification covers Flex Prime." />
+    <meta property="og:image" content="https://rush-link.github.io/assets/rushlink-social-card.png" />
+    <meta property="og:image:alt" content="RushLink by Cygma Audio. Shape tones. Own the stage." />
+    <meta property="og:site_name" content="RushLink by Cygma Audio" />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
-    <title>RushLink — Shape tones. Own the stage.</title>
+    <meta name="twitter:image" content="https://rush-link.github.io/assets/rushlink-social-card.png" />
+    <meta name="twitter:image:alt" content="RushLink by Cygma Audio. Shape tones. Own the stage." />
+    <title>RushLink by Cygma Audio — Shape tones. Own the stage.</title>
     <link rel="icon" type="image/svg+xml" href="assets/rushlink.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <script src="theme.js"></script>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="brand.css" />
+    <link rel="stylesheet" href="themes.css" />
     <script src="script.js" defer></script>
     <script src="contact.js" defer></script>
     <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "RushLink by Cygma Audio",
+        "alternateName": "RushLink",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Windows, macOS",
+        "description": "An independent, open-source HeadRush companion targeting firmware 5.2.0, with tone discovery, rig editing and live performance tools. Live device verification covers Flex Prime.",
+        "creator": { "@type": "Organization", "name": "Cygma Audio" }
+      }
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -27,9 +48,9 @@
     <div class="noise" aria-hidden="true"></div>
 
     <header class="site-header" data-header>
-      <a class="site-brand" href="#top" aria-label="RushLink home">
-        <img src="assets/rushlink.svg" alt="" width="46" height="46" />
-        <span><strong>RushLink</strong><small>HeadRush companion</small></span>
+      <a class="site-brand" href="#top" aria-label="RushLink by Cygma Audio home">
+        <img src="assets/rushlink-mark.svg" data-theme-dark="assets/rushlink-mark.svg" data-theme-light="assets/rushlink-mark-light.svg" alt="" width="66" height="44" />
+        <small>by Cygma Audio</small>
       </a>
       <nav class="desktop-nav" aria-label="Primary navigation">
         <a href="#tonemod">ToneMod</a>
@@ -37,11 +58,11 @@
         <a href="#change-history">History</a>
         <a href="#features">Features</a>
         <a href="#docs">How to use</a>
-        <a href="#support">Support</a>
+        <a href="#contribute">Contribute</a>
         <a href="about.html">Hire Me!</a>
       </nav>
       <div class="header-actions">
-        <span class="alpha-pill"><i></i>Early alpha</span>
+        <label class="theme-control"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9Z"/></svg><select data-theme-select aria-label="Colour theme"><option value="system">System</option><option value="dark">Dark</option><option value="light">Light</option></select></label>
         <a class="support-button support-button--header" href="https://ko-fi.com/mattc_" target="_blank" rel="noopener noreferrer" aria-label="Buy me a coffee on Ko-fi to support RushLink"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h11v7a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5V8Zm11 2h1a3 3 0 0 1 0 6h-1M9 12c0-2 3-2 3 0 0-2 3-2 3 0 0 2-3 4-3 4s-3-2-3-4Z"/></svg><span>Buy me a coffee</span></a>
         <a class="button button--small button--primary magnetic" data-release-link href="#download">Download</a>
         <button class="menu-button" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu" data-menu-button>
@@ -49,7 +70,7 @@
         </button>
       </div>
       <nav class="mobile-nav" id="mobile-menu" aria-label="Mobile navigation" data-mobile-menu>
-        <a href="#tonemod">ToneMod</a><a href="#stagehand">StageHand</a><a href="#change-history">Change History</a><a href="#features">Features</a><a href="#docs">How to use</a><a href="#support">Support RushLink</a><a href="https://ko-fi.com/mattc_" target="_blank" rel="noopener noreferrer">Buy me a coffee on Ko-fi</a><a href="#contact">Contact</a><a href="about.html">Hire Me!</a><a href="#roadmap">Roadmap</a><a data-release-link href="#download">Download alpha</a>
+        <a href="#tonemod">ToneMod</a><a href="#stagehand">StageHand</a><a href="#change-history">Change History</a><a href="#features">Features</a><a href="#docs">How to use</a><a href="#contribute">Contribute</a><a href="#support">Support RushLink</a><a href="https://ko-fi.com/mattc_" target="_blank" rel="noopener noreferrer">Buy me a coffee on Ko-fi</a><a href="#contact">Contact</a><a href="about.html">Hire Me!</a><a href="#roadmap">Roadmap</a><a data-release-link href="#download">Download alpha</a>
       </nav>
     </header>
 
@@ -57,15 +78,15 @@
       <section class="hero" id="top">
         <div class="hero-grid" aria-hidden="true"></div>
         <div class="hero-copy reveal">
-          <div class="hero-kicker"><span class="signal-dot"></span><span>Built for the HeadRush Prime family</span><strong>Desktop alpha</strong></div>
+          <div class="hero-kicker"><span class="signal-dot"></span><span>For HeadRush firmware 5.2.0</span><strong>Desktop alpha</strong></div>
           <h1>Shape tones.<br /><span class="gradient-text">Own the stage.</span></h1>
-          <p class="hero-lead">RushLink turns the deepest parts of your HeadRush workflow into a fast, focused desktop experience—discover and audition captures with <strong>ToneMod</strong>, perform with <strong>StageHand</strong>, and experiment safely with <strong>Change History</strong>.</p>
+          <p class="hero-lead"><strong>RushLink by Cygma Audio</strong> is a free, open-source HeadRush companion under the <a href="https://github.com/Rush-Link/RushLink-App/blob/main/LICENSE">MIT License</a>. Discover and audition captures with <strong>ToneMod</strong>, perform with <strong>StageHand</strong>, and experiment safely with <strong>Change History</strong>.</p>
           <div class="hero-actions">
             <a class="button button--primary button--large magnetic" data-release-link href="#download"><span>Download early alpha</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></svg></a>
             <a class="button button--ghost button--large" href="#flagship"><span>Explore the flagship features</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></a>
           </div>
           <div class="hero-trust">
-            <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Free to use</span>
+            <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><a href="https://github.com/Rush-Link/RushLink-App">Free &amp; open source</a></span>
             <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 6v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6l-8-4Z"/></svg>Local-network control</span>
             <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M12 5v14"/></svg>Flex Prime · Prime · Core</span>
           </div>
@@ -78,7 +99,7 @@
           <div class="app-window" data-tilt aria-label="Animated RushLink application preview">
             <div class="app-window__bar">
               <span class="window-lights"><i></i><i></i><i></i></span>
-              <span class="window-brand"><img src="assets/rushlink.svg" alt="" /><span><b>RushLink</b><small>HEADRUSH WORKSPACE</small></span></span>
+              <span class="window-brand"><img src="assets/rushlink-mark.svg" alt="" width="40" height="27" /><small>by Cygma Audio</small></span>
               <span class="device-link"><i></i><span><b>Prime family connected</b><small>Local sync · just now</small></span></span>
               <span class="window-mode">LIVE</span>
             </div>
@@ -157,7 +178,7 @@
 
         <article class="flagship-card flagship-card--tone reveal" id="tonemod" data-spotlight-card>
           <div class="flagship-copy">
-            <div class="feature-number">01</div>
+            <div class="feature-number" aria-hidden="true">01</div>
             <span class="feature-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z"/></svg>FLAGSHIP · DISCOVERY</span>
             <h3>Tone<span>Mod</span></h3>
             <p>Search deep tone catalogues without loading hundreds of results at once. Filter, inspect, classify and audition NAM captures or IRs through a complete test rig on your actual HeadRush.</p>
@@ -188,7 +209,7 @@
             <div class="stage-console__footer"><span><i></i>Layout locked</span><span>Tap controls · Hold for secondary action</span></div>
           </div>
           <div class="flagship-copy">
-            <div class="feature-number">02</div>
+            <div class="feature-number" aria-hidden="true">02</div>
             <span class="feature-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18V6m5 12V9m5 9V4m6 14v-7"/></svg>FLAGSHIP · PERFORMANCE</span>
             <h3>Stage<span>Hand</span></h3>
             <p>Replace tiny targets and rigid layouts with a performance surface built around your hands, feet and set. Every stage can follow a rig or stay independent.</p>
@@ -199,7 +220,7 @@
 
         <article class="flagship-card flagship-card--history reveal" id="change-history" data-spotlight-card>
           <div class="flagship-copy">
-            <div class="feature-number">03</div>
+            <div class="feature-number" aria-hidden="true">03</div>
             <span class="feature-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg>FLAGSHIP · CREATIVE SAFETY</span>
             <h3>Change <span>History</span></h3>
             <p>Push a rig further without losing the version that felt right. RushLink records meaningful edits as understandable states—not a flood of every slider movement.</p>
@@ -235,9 +256,9 @@
       <section class="section workflow-section">
         <div class="section-heading reveal"><span class="eyebrow">FROM ZERO TO SIGNAL</span><h2>Connected in minutes.<br /><span>Useful from the first click.</span></h2></div>
         <ol class="workflow">
-          <li class="reveal"><span class="step-index">01</span><div class="step-icon"><svg viewBox="0 0 24 24"><path d="M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M12 20h.01"/></svg></div><h3>Share a trusted network</h3><p>Connect your desktop and compatible HeadRush pedal to the same local network.</p></li>
-          <li class="reveal"><span class="step-index">02</span><div class="step-icon"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4zM8 22h8M12 18v4"/></svg></div><h3>Let RushLink find it</h3><p>Select Flex Prime, Prime or Core, use automatic discovery, or enter a private IP or <code>.local</code> hostname.</p></li>
-          <li class="reveal"><span class="step-index">03</span><div class="step-icon"><svg viewBox="0 0 24 24"><path d="m8 5 11 7-11 7V5Z"/></svg></div><h3>Play, edit and perform</h3><p>Device state stays live while you explore ToneMod, edit rigs or step into StageHand.</p></li>
+          <li class="reveal"><span class="step-index" aria-hidden="true">01</span><div class="step-icon"><svg viewBox="0 0 24 24"><path d="M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M12 20h.01"/></svg></div><h3>Share a trusted network</h3><p>Connect your desktop and compatible HeadRush pedal to the same local network.</p></li>
+          <li class="reveal"><span class="step-index" aria-hidden="true">02</span><div class="step-icon"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4zM8 22h8M12 18v4"/></svg></div><h3>Let RushLink find it</h3><p>Select Flex Prime, Prime or Core, use automatic discovery, or enter a private IP or <code>.local</code> hostname.</p></li>
+          <li class="reveal"><span class="step-index" aria-hidden="true">03</span><div class="step-icon"><svg viewBox="0 0 24 24"><path d="m8 5 11 7-11 7V5Z"/></svg></div><h3>Play, edit and perform</h3><p>Device state stays live while you explore ToneMod, edit rigs or step into StageHand.</p></li>
         </ol>
       </section>
 
@@ -262,7 +283,27 @@
 
             <article id="docs-safety" class="doc-article reveal"><span class="doc-number">06</span><div><span class="doc-label">LIVE APPLY & SAFETY</span><h3>The pedal remains the source of truth</h3><p>RushLink listens for device events and uses efficient page-scoped polling as a fallback. Immediate edits are designed to feel direct, while history and snapshots provide recovery. Network requests are restricted to <code>.local</code>, loopback and private/link-local addresses; arbitrary remote targets, redirects, credentials and non-API routes are rejected by the native transport.</p></div></article>
 
-            <article id="docs-faq" class="doc-article reveal"><span class="doc-number">07</span><div><span class="doc-label">FAQ</span><div class="faq-list"><details><summary>Which HeadRush devices work today?<svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><p>RushLink is compatible with the latest HeadRush Prime family: Flex Prime, Prime and Core. Because this is an early alpha built around an evolving, undocumented device API, some model- or firmware-specific controls may differ and should be verified on the pedal.</p></details><details><summary>Is RushLink an official HeadRush product?<svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><p>No. RushLink is an independent, unofficial companion and is not affiliated with or endorsed by HeadRush or inMusic.</p></details><details><summary>Does it send my audio to the computer?<svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><p>No. RushLink controls supported device functions and reads exposed state. It does not claim a hidden HTTP or WebSocket audio stream from the pedal.</p></details><details><summary>Will there be mobile versions?<svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><p>Yes, they are planned after the desktop workflow stabilizes: iPadOS and Android tablets first, followed by iPhone and Android phone layouts.</p></details><details><summary>Why call it an early alpha?<svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><p>The product is actively evolving against an undocumented device API. Some workflows, copy and compatibility boundaries will change as more physical testing and firmware contracts become available.</p></details></div></div></article>
+            <article id="docs-faq" class="doc-article reveal"><span class="doc-number">07</span><div><span class="doc-label">FAQ</span><div class="faq-list"><details><summary>Which HeadRush devices work today?<svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><p>RushLink 0.1.3 targets HeadRush firmware 5.2.0. Live device checks cover Flex Prime running 5.2.0.2a405ee, with earlier checks on 5.1.0.2a63755. Prime and Core use capability-based profiles but have not been verified on physical units. The 5.2 features require live device support; back up important rigs before editing.</p></details><details><summary>Is RushLink an official HeadRush product?<svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><p>No. RushLink is an independent, unofficial companion and is not affiliated with or endorsed by HeadRush or inMusic.</p></details><details><summary>Does it send my audio to the computer?<svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><p>No. RushLink controls supported device functions and reads exposed state. It does not claim a hidden HTTP or WebSocket audio stream from the pedal.</p></details><details><summary>Will there be mobile versions?<svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><p>Responsive phone and tablet layouts and Android/iOS preview build infrastructure are already included. Physical-device discovery, saving, audio and MIDI validation is still incomplete, so native mobile builds remain previews.</p></details><details><summary>Why call it an early alpha?<svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary><p>The product is actively evolving against an undocumented device API. Some workflows, copy and compatibility boundaries will change as more physical testing and firmware contracts become available.</p></details></div></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section contribute-section" id="contribute" aria-labelledby="contribute-title">
+        <div class="contribute-layout">
+          <div class="section-heading reveal">
+            <span class="eyebrow">OPEN SOURCE · MIT LICENSE</span>
+            <h2 id="contribute-title">Make RushLink better.<br /><span>Contribute your way.</span></h2>
+            <p>RushLink is free and open source. Explore the code, suggest an improvement or help build the next release. Contributions of every size are welcome.</p>
+            <div class="contribute-actions">
+              <a class="button button--primary button--large" href="https://github.com/Rush-Link/RushLink-App" target="_blank" rel="noopener noreferrer">View on GitHub <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
+              <a class="button button--ghost button--large" href="https://github.com/Rush-Link/RushLink-App/blob/main/CONTRIBUTING.md" target="_blank" rel="noopener noreferrer">Contribution guide</a>
+            </div>
+            <p class="contribute-start">Start with the guide, fork the repository and open a pull request with your changes. For larger ideas, open an issue first so we can agree on the direction.</p>
+          </div>
+          <div class="contribute-ways reveal" aria-label="Ways to contribute">
+            <article><span aria-hidden="true">01</span><div><h3>Report a bug or share an idea</h3><p>Tell us what happened and how to reproduce it. Include your RushLink version, operating system and, for device issues, your HeadRush model and firmware.</p><a href="https://github.com/Rush-Link/RushLink-App/issues" target="_blank" rel="noopener noreferrer">Open a GitHub issue <span aria-hidden="true">↗</span></a></div></article>
+            <article><span aria-hidden="true">02</span><div><h3>Improve the app and its docs</h3><p>Help with code, tests, documentation, design or accessibility. The browser demo lets you work on the interface without owning a pedal.</p></div></article>
+            <article><span aria-hidden="true">03</span><div><h3>Help verify device support</h3><p>Check workflows on your HeadRush and share reproducible results with the model and firmware version. Back up important rigs and remove private details from any diagnostics you share.</p></div></article>
           </div>
         </div>
       </section>
@@ -309,7 +350,7 @@
           <div class="maker-intro">
             <span class="eyebrow">BEHIND RUSHLINK</span>
             <h2>The editor I wanted did not exist,<br /><span>so I built RushLink.</span></h2>
-            <p>I designed and built RushLink as an end-to-end product: understanding an undocumented hardware interface, shaping complex musician workflows, building the cross-platform application, and creating the testing and release systems around it.</p>
+            <p>I designed and built RushLink by Cygma Audio as an end-to-end product: understanding an undocumented hardware interface, shaping complex musician workflows, building the cross-platform application, and creating the testing and release systems around it.</p>
             <p>It is the sort of project I enjoy: technically awkward, close to the people using it and broad enough that the interface matters as much as the code behind it.</p>
             <div class="maker-actions">
               <a class="button button--primary button--large magnetic" href="#contact"><span>Get in touch</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></a>
@@ -326,7 +367,7 @@
               <article><span>04</span><div><b>Quality and delivery</b><p>High-value automated coverage, real browser journeys, native tests, secure release checks and Windows/macOS pipelines.</p></div></article>
             </div>
             <div class="maker-evidence">
-              <span><b>95%+</b><small>tested coverage</small></span>
+              <span><b>Tests</b><small>and coverage gates</small></span>
               <span><b>3</b><small>device profiles</small></span>
               <span><b>2</b><small>desktop targets</small></span>
               <span><b>1</b><small>end-to-end product</small></span>
@@ -344,12 +385,13 @@
       <section class="download-section" id="download">
         <div class="download-orbit" aria-hidden="true"><i></i><i></i><i></i></div>
         <div class="download-card reveal">
-          <img src="assets/rushlink.svg" alt="RushLink" width="112" height="112" />
-          <span class="eyebrow">READY WHEN YOUR PEDAL IS</span>
+          <picture class="download-lockup"><source media="(max-width: 420px)" srcset="assets/rushlink-compact.svg" data-theme-dark="assets/rushlink-compact.svg" data-theme-light="assets/rushlink-compact-light.svg" /><img src="assets/rushlink-lockup.svg" data-theme-dark="assets/rushlink-lockup.svg" data-theme-light="assets/rushlink-lockup-light.svg" alt="RushLink by Cygma Audio" width="180" height="154" /></picture>
+          <span class="eyebrow">FOR HEADRUSH FIRMWARE 5.2.0</span>
           <h2>Take the bigger view.</h2>
-          <p>Download the current desktop alpha and give your Flex Prime, Prime or Core a workflow that feels as ambitious as your sound.</p>
+          <p>RushLink <strong>0.1.3</strong> targets <strong>HeadRush firmware 5.2.0</strong>. Live device verification covers Flex Prime. Prime and Core still need physical verification.</p>
           <div class="download-actions"><a class="button button--primary button--large magnetic" data-release-link href="#"><span>Download RushLink</span><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></svg></a><a class="button button--ghost button--large" href="#docs">Read the quick start</a></div>
-          <small>Desktop early alpha · Flex Prime, Prime & Core · Free to use</small>
+          <small>Desktop early alpha · Free &amp; open source · MIT License</small>
+          <p class="download-release-notes"><a href="https://github.com/Rush-Link/RushLink-App/blob/main/docs/releases/0.1.3.md" target="_blank" rel="noopener noreferrer">Read the RushLink 0.1.3 release notes <span aria-hidden="true">↗</span></a></p>
           <div class="download-support"><p>Enjoying RushLink? Help fund the next improvement.</p><a class="button button--support button--large" href="https://ko-fi.com/mattc_" target="_blank" rel="noopener noreferrer">Support RushLink on Ko-fi</a></div>
         </div>
       </section>
@@ -368,7 +410,7 @@
           </div>
 
           <form class="contact-form" action="https://formspree.io/f/mdeolqgb" method="POST" data-contact-form>
-            <input type="hidden" name="_subject" value="New enquiry from the RushLink website" />
+            <input type="hidden" name="_subject" value="New enquiry from the RushLink by Cygma Audio website" />
             <input type="hidden" name="source" value="RushLink homepage" />
             <label class="contact-form__trap" aria-hidden="true"><span>Leave this field empty</span><input name="_gotcha" type="text" tabindex="-1" autocomplete="off" /></label>
             <div class="contact-form__heading"><span><b>Send me a message</b><small>Feedback, questions and opportunities welcome.</small></span><em>DIRECT ENQUIRY</em></div>
@@ -387,10 +429,10 @@
     </main>
 
     <footer class="site-footer">
-      <div class="footer-brand"><img src="assets/rushlink.svg" alt="" /><span><strong>RushLink</strong><small>Shape tones. Own the stage.</small></span></div>
+      <div class="footer-brand"><img class="product-lockup" src="assets/rushlink-compact.svg" data-theme-dark="assets/rushlink-compact.svg" data-theme-light="assets/rushlink-compact-light.svg" alt="RushLink by Cygma Audio" width="160" height="136" /><small>Shape tones. Own the stage.</small></div>
       <div class="footer-links"><span>EXPLORE</span><a href="#tonemod">ToneMod</a><a href="#stagehand">StageHand</a><a href="#change-history">Change History</a><a href="#features">Features</a><a href="about.html">Hire Me!</a><a href="#roadmap">Roadmap</a></div>
-      <div class="footer-links"><span>SUPPORT</span><a href="#docs">Documentation</a><a data-release-link href="#">Releases</a><a href="#contact">Contact</a><a href="https://ko-fi.com/mattc_" target="_blank" rel="noopener noreferrer">Buy me a coffee</a><a href="privacy.html">Privacy</a></div>
-      <div class="footer-meta"><p>RushLink is an independent, unofficial companion. It is not affiliated with or endorsed by HeadRush or inMusic.</p><small>© <span data-year></span> RushLink. Early alpha software.</small></div>
+      <div class="footer-links"><span>SUPPORT</span><a href="#docs">Documentation</a><a href="#contribute">Contribute</a><a href="https://github.com/Rush-Link/RushLink-App" target="_blank" rel="noopener noreferrer">Source on GitHub</a><a data-release-link href="#">Releases</a><a href="#contact">Contact</a><a href="https://ko-fi.com/mattc_" target="_blank" rel="noopener noreferrer">Buy me a coffee</a><a href="privacy.html">Privacy</a></div>
+      <div class="footer-meta"><p>RushLink by Cygma Audio is an independent, unofficial companion. It is not affiliated with or endorsed by HeadRush or inMusic. The application is open source under the MIT license.</p><small>© <span data-year></span> Cygma Audio. Early alpha software.</small></div>
     </footer>
 
     <aside class="release-stats" data-release-stats hidden aria-live="polite">

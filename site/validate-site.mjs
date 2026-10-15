@@ -7,8 +7,54 @@ import { chromium } from "playwright";
 const siteUrl = pathToFileURL(path.resolve("site/index.html")).href;
 const browser = await chromium.launch({ headless: true });
 
+async function validateBrand(page) {
+  await page.evaluate(() => document.fonts.ready);
+  assert.match(await page.title(), /RushLink by Cygma Audio/);
+  assert.equal(await page.locator('meta[name="theme-color"]').getAttribute("content"), "#070b11");
+  assert.match(await page.locator('meta[name="description"]').getAttribute("content"), /RushLink by Cygma Audio/);
+  assert.equal(await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue("--bg").trim()), "#05080d");
+  assert.equal(await page.evaluate(() => getComputedStyle(document.documentElement).getPropertyValue("--cyan").trim()), "#63e9e7");
+  assert.deepEqual(await page.locator("img").evaluateAll((images) => images.filter((img) => !img.complete || img.naturalWidth === 0).map((img) => img.src)), [], "all brand and preview images should load");
+  const headerBrand = page.getByRole("link", { name: "RushLink by Cygma Audio home", exact: true });
+  if (await headerBrand.count()) {
+    assert.equal(await headerBrand.locator("small").innerText(), "by Cygma Audio");
+    assert.equal(await headerBrand.locator("small").isVisible(), true);
+    assert.ok(await headerBrand.locator("small").evaluate((element) => parseFloat(getComputedStyle(element).fontSize) >= 12), "the company credit must remain readable");
+    assert.ok(await headerBrand.locator("small").evaluate((element) => parseFloat(getComputedStyle(element).fontWeight) <= 400), "the maker credit should stay delicate");
+    assert.equal(await headerBrand.innerText(), "by Cygma Audio", "the original logo should not have a repeated RushLink wordmark beside it");
+    const mark = await headerBrand.locator("img").boundingBox();
+    const caption = await headerBrand.locator("small").boundingBox();
+    assert.ok(caption.y >= mark.y + mark.height - 1, "the maker credit belongs underneath the mark");
+    assert.equal(await page.locator(".footer-brand img").getAttribute("alt"), "RushLink by Cygma Audio");
+    assert.match(await page.locator(".footer-meta").innerText(), /Cygma Audio/);
+  }
+}
+
+async function validateOpenSourceHero(page, viewport, mode) {
+  const hero = page.locator(".hero-copy");
+  assert.match(await hero.locator(".hero-lead").innerText(), /free, open-source HeadRush companion/);
+  assert.match(await hero.locator(".hero-kicker").innerText(), /For HeadRush firmware 5\.2\.0/i);
+  const firmwareTarget = await hero.locator(".hero-kicker").boundingBox();
+  assert.ok(firmwareTarget && firmwareTarget.x >= 0
+    && firmwareTarget.x + firmwareTarget.width <= viewport.width + 1,
+  `${mode}: the firmware target fits in the ${viewport.width}px hero`);
+  const links = [
+    ["Free & open source", "https://github.com/Rush-Link/RushLink-App"],
+    ["MIT License", "https://github.com/Rush-Link/RushLink-App/blob/main/LICENSE"],
+  ];
+  for (const [label, href] of links) {
+    const link = hero.getByRole("link", { name: label, exact: true });
+    assert.equal(await link.getAttribute("href"), href);
+    assert.equal(await link.isVisible(), true, `${mode}: ${label} is visible in the hero`);
+    const box = await link.boundingBox();
+    assert.ok(box && box.x >= 0 && box.x + box.width <= viewport.width + 1
+      && box.y >= 0 && box.y + box.height <= viewport.height + 1,
+    `${mode}: ${label} fits in the initial ${viewport.width}px viewport`);
+  }
+}
+
 async function validateViewport(name, viewport) {
-  const page = await browser.newPage({ viewport });
+  const page = await browser.newPage({ colorScheme: "dark", viewport });
   const runtimeErrors = [];
   page.on("pageerror", (error) => runtimeErrors.push(error.message));
   page.on("console", (message) => {
@@ -16,6 +62,13 @@ async function validateViewport(name, viewport) {
   });
   await page.goto(siteUrl, { waitUntil: "load" });
   await page.waitForTimeout(350);
+  await validateBrand(page);
+  await validateOpenSourceHero(page, viewport, "dark");
+  const theme = page.getByRole("combobox", { name: "Colour theme", exact: true });
+  await theme.selectOption("light");
+  assert.equal(await page.locator("html").getAttribute("data-theme"), "light");
+  await validateOpenSourceHero(page, viewport, "light");
+  await theme.selectOption("dark");
 
   assert.match(await page.title(), /RushLink/);
   assert.equal(await page.locator("h1").innerText(), "Shape tones.\nOwn the stage.");
@@ -34,14 +87,19 @@ async function validateViewport(name, viewport) {
   assert.equal(await page.getByText("Prime family connected", { exact: true }).count(), 1);
   assert.equal(await page.getByText("14-slot rig editing", { exact: true }).count(), 0);
   assert.equal(await page.getByText("Flex Prime · Prime · Core", { exact: true }).first().isVisible(), true);
-  assert.match(await page.locator('meta[name="description"]').getAttribute("content"), /Flex Prime, Prime and Core/);
+  assert.match(await page.locator('meta[name="description"]').getAttribute("content"), /targeting firmware 5\.2\.0[\s\S]*Flex Prime[\s\S]*Prime and Core still need physical verification/);
+  assert.match(await page.locator("#download").innerText(), /RushLink 0\.1\.3 targets HeadRush firmware 5\.2\.0/);
+  assert.match(await page.locator("#download").innerText(), /Prime and Core still need physical verification/);
+  assert.equal(await page.locator(".download-release-notes a").getAttribute("href"), "https://github.com/Rush-Link/RushLink-App/blob/main/docs/releases/0.1.3.md");
   assert.equal(await page.getByText(/Prime and Core remain planned capability profiles/i).count(), 0);
   assert.equal(await page.getByText(/Flex Prime is the current physical contract target/i).count(), 0);
   assert.equal(await page.getByRole("heading", { name: /If RushLink earns a place in your setup/i }).count(), 1);
   assert.equal(await page.getByRole("heading", { name: /The editor I wanted did not exist/i }).count(), 1);
   assert.equal(await page.getByText("OPEN TO THE RIGHT OPPORTUNITY", { exact: true }).count(), 0);
   assert.equal(await page.locator(".maker-capabilities article").count(), 4);
-  assert.equal(await page.getByText("95%+", { exact: true }).count(), 1);
+  const testEvidence = page.locator(".maker-evidence > span").first();
+  assert.equal(await testEvidence.locator("b").innerText(), "Tests");
+  assert.equal(await testEvidence.locator("small").textContent(), "and coverage gates");
   assert.equal(await page.getByText(/Completely optional\. Any amount helps/i).count(), 1);
   assert.equal(await page.locator(".support-share").getAttribute("href"), "#contact");
   const supportLinks = page.locator('a[href="https://ko-fi.com/mattc_"]');
@@ -76,7 +134,7 @@ async function validateViewport(name, viewport) {
     assert.equal(await page.locator("[data-mobile-menu]").getAttribute("class"), "mobile-nav open");
     await page.keyboard.press("Escape");
     await page.locator("[data-menu-button]").click();
-    await page.setViewportSize({ width: viewport.height, height: viewport.width });
+    await page.setViewportSize({ width: Math.max(821, viewport.height), height: viewport.width });
     await page.waitForFunction(() => !document.body.classList.contains("menu-open"));
     assert.notEqual(await page.locator("body").evaluate((element) => getComputedStyle(element).overflow), "hidden");
     await page.setViewportSize(viewport);
@@ -98,9 +156,10 @@ await validateViewport("desktop", { width: 1440, height: 1000 });
 await validateViewport("compact desktop", { width: 1024, height: 900 });
 await validateViewport("tablet", { width: 820, height: 1080 });
 await validateViewport("phone", { width: 390, height: 844 });
+await validateViewport("small phone", { width: 320, height: 800 });
 
 async function validateAboutViewport(name, viewport) {
-  const page = await browser.newPage({ viewport });
+  const page = await browser.newPage({ colorScheme: "dark", viewport });
   const runtimeErrors = [];
   page.on("pageerror", (error) => runtimeErrors.push(error.message));
   page.on("console", (message) => {
@@ -108,6 +167,7 @@ async function validateAboutViewport(name, viewport) {
   });
   await page.goto(pathToFileURL(path.resolve("site/about.html")).href, { waitUntil: "load" });
   await page.waitForTimeout(350);
+  await validateBrand(page);
 
   assert.match(await page.title(), /Engineer & Product Designer/);
   assert.equal(await page.getByRole("heading", { name: /I build useful software/i }).count(), 1);
@@ -162,7 +222,7 @@ for (const file of readdirSync("site", { recursive: true })) {
 
 // Intercept the native POST so validation never sends an actual enquiry.
 async function validateContactSubmission(file, topic, source, javaScriptEnabled) {
-  const page = await browser.newPage({ viewport: { width: 1440, height: 1000 }, javaScriptEnabled });
+  const page = await browser.newPage({ colorScheme: "dark", viewport: { width: 1440, height: 1000 }, javaScriptEnabled });
   const endpoint = "https://formspree.io/f/mdeolqgb";
   const submissions = [];
   await page.route(endpoint, async (route) => {
@@ -224,7 +284,7 @@ for (const javaScriptEnabled of [true, false]) {
   await validateContactSubmission("about.html", "Permanent role", "RushLink Hire Me page", javaScriptEnabled);
 }
 
-const statsPage = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+const statsPage = await browser.newPage({ colorScheme: "dark", viewport: { width: 1280, height: 900 } });
 await statsPage.route("https://api.github.com/repos/rush-link/rush-link.github.io/releases?per_page=100", async (route) => {
   await route.fulfill({
     status: 200,
@@ -252,12 +312,15 @@ assert.equal(await statsPage.locator("[data-stat-releases]").innerText(), "1");
 assert.equal(await statsPage.locator("[data-stat-latest]").innerText(), "rushlink-v0.1.0");
 await statsPage.close();
 
-const privacyPage = await browser.newPage({ viewport: { width: 820, height: 1000 } });
+const privacyPage = await browser.newPage({ colorScheme: "dark", viewport: { width: 820, height: 1000 } });
 await privacyPage.goto(pathToFileURL(path.resolve("site/privacy.html")).href, { waitUntil: "load" });
+await validateBrand(privacyPage);
 assert.equal(await privacyPage.getByRole("heading", { name: "Privacy, kept clear." }).count(), 1);
 assert.match(await privacyPage.getByText(/not included in installers/i).innerText(), /not included in installers/i);
 assert.match(await privacyPage.getByText(/website enquiries/i).innerText(), /website enquiries/i);
 await privacyPage.close();
 
+const { validateThemes } = await import(pathToFileURL(path.resolve("site/validate-theme.mjs")).href);
+await validateThemes(browser);
 await browser.close();
-console.log("RushLink website validation passed at desktop, tablet and phone sizes.");
+console.log("RushLink by Cygma Audio website validation passed at desktop, tablet and phone sizes.");

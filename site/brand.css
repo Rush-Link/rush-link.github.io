@@ -1,0 +1,37 @@
+/* Keep RushLink's existing type, palette and layout; add a readable maker credit. */
+.site-brand, .about-page .site-brand {
+  flex: 0 0 auto;
+  min-width: 112px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1px;
+}
+.site-brand img { width: 66px; height: auto; border-radius: 0; box-shadow: none; }
+.site-header.scrolled .site-brand img { width: 60px; }
+.site-brand small {
+  display: block;
+  margin-top: 0;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.footer-brand { align-items: flex-start; flex-direction: column; gap: 10px; }
+.footer-brand .product-lockup {
+  width: 180px;
+  height: auto;
+  max-width: none;
+  border-radius: 0;
+  box-shadow: none;
+  filter: none;
+  transform: none;
+}
+.footer-brand>small { color: var(--text-2); }
+.download-lockup { width: min(220px, 100%); margin-bottom: 25px; }
+.download-lockup img { width: 100%; height: auto; }
+.window-brand { flex-direction: column; gap: 1px; }
+.window-brand>img { width: 40px; height: auto; border-radius: 0; box-shadow: none; }
+.window-brand>small { display: block; margin-top: 0; font-size: 7px; font-weight: 300; letter-spacing: 0; line-height: 1; }
+@media(max-width:820px) { .site-brand img { width: 60px; } }
+@media(max-width:420px) { .download-lockup { width: 180px; } }

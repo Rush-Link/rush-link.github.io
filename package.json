@@ -1,0 +1,17 @@
+{
+  "name": "rushlink-website",
+  "version": "0.0.0",
+  "private": true,
+  "description": "RushLink by Cygma Audio static website and browser validation.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "test:site": "node site/validate-site.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1"
+  }
+}
