@@ -53,6 +53,29 @@ async function validateOpenSourceHero(page, viewport, mode) {
   }
 }
 
+async function validateDownloadGuidance(page, viewport) {
+  const guidance = page.locator(".download-platforms");
+  await guidance.locator("summary").click();
+  assert.equal(await guidance.getAttribute("open"), "");
+  const text = await guidance.innerText();
+  for (const platform of ["Windows x64:", "macOS:", "Linux x64 preview:", "Android preview:", "iOS preview:"]) {
+    assert.ok(text.includes(platform), `${platform} has download guidance`);
+  }
+  assert.match(text, /IPA needs developer signing and provisioning/);
+  assert.match(text, /not an App Store or TestFlight package/);
+  assert.match(text, /release catalog lists the assets currently available/);
+  assert.equal(await guidance.getByText("RushLink_0.1.3_windows_x64_setup_headrush-5.2.0.exe", { exact: true }).count(), 1);
+  assert.equal(await guidance.getByText("RushLink_0.1.3_ios-simulator-arm64_headrush-5.2.0.app.zip", { exact: true }).count(), 1);
+  const theme = page.getByRole("combobox", { name: "Colour theme", exact: true });
+  for (const mode of ["light", "dark"]) {
+    await theme.selectOption(mode);
+    const box = await guidance.boundingBox();
+    assert.ok(box && box.x >= 0 && box.x + box.width <= viewport.width + 1, `${mode}: platform guidance fits ${viewport.width}px`);
+    assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), `${mode}: filename examples do not overflow`);
+  }
+  await guidance.locator("summary").click();
+}
+
 async function validateViewport(name, viewport) {
   const page = await browser.newPage({ colorScheme: "dark", viewport });
   const runtimeErrors = [];
@@ -69,6 +92,7 @@ async function validateViewport(name, viewport) {
   assert.equal(await page.locator("html").getAttribute("data-theme"), "light");
   await validateOpenSourceHero(page, viewport, "light");
   await theme.selectOption("dark");
+  await validateDownloadGuidance(page, viewport);
 
   assert.match(await page.title(), /RushLink/);
   assert.equal(await page.locator("h1").innerText(), "Shape tones.\nOwn the stage.");
@@ -90,7 +114,8 @@ async function validateViewport(name, viewport) {
   assert.match(await page.locator('meta[name="description"]').getAttribute("content"), /targeting firmware 5\.2\.0[\s\S]*Flex Prime[\s\S]*Prime and Core still need physical verification/);
   assert.match(await page.locator("#download").innerText(), /RushLink 0\.1\.3 targets HeadRush firmware 5\.2\.0/);
   assert.match(await page.locator("#download").innerText(), /Prime and Core still need physical verification/);
-  assert.equal(await page.locator(".download-release-notes a").getAttribute("href"), "https://github.com/Rush-Link/RushLink-App/blob/main/docs/releases/0.1.3.md");
+  assert.equal(await page.locator(".download-release-notes a:not(.download-source-release)").getAttribute("href"), "https://github.com/Rush-Link/RushLink-App/blob/main/docs/releases/0.1.3.md");
+  assert.equal(await page.locator(".download-source-release").getAttribute("href"), "https://github.com/Rush-Link/RushLink-App/releases/tag/rushlink-v0.1.3");
   assert.equal(await page.getByText(/Prime and Core remain planned capability profiles/i).count(), 0);
   assert.equal(await page.getByText(/Flex Prime is the current physical contract target/i).count(), 0);
   assert.equal(await page.getByRole("heading", { name: /If RushLink earns a place in your setup/i }).count(), 1);
@@ -117,9 +142,10 @@ async function validateViewport(name, viewport) {
   const releaseLinks = page.locator("[data-release-link]");
   assert.equal(await releaseLinks.count(), 5);
   assert.deepEqual(
-    await releaseLinks.evaluateAll((links) => links.map((link) => link.getAttribute("href"))),
-    Array(5).fill("https://github.com/rush-link/rush-link.github.io/releases"),
+    await releaseLinks.evaluateAll((links) => links.filter((link) => !link.closest("#download")).map((link) => link.getAttribute("href"))),
+    Array(4).fill("https://github.com/rush-link/rush-link.github.io/releases"),
   );
+  assert.equal(await page.locator("#download [data-release-link]").getAttribute("href"), "https://github.com/rush-link/rush-link.github.io/releases/tag/rushlink-v0.1.3");
   assert.equal(await page.locator('a[href="privacy.html"]').getAttribute("href"), "privacy.html");
   const hireLinks = page.locator('a[href="about.html"]');
   assert.equal(await hireLinks.count(), 3);

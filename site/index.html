@@ -389,9 +389,21 @@
           <span class="eyebrow">FOR HEADRUSH FIRMWARE 5.2.0</span>
           <h2>Take the bigger view.</h2>
           <p>RushLink <strong>0.1.3</strong> targets <strong>HeadRush firmware 5.2.0</strong>. Live device verification covers Flex Prime. Prime and Core still need physical verification.</p>
-          <div class="download-actions"><a class="button button--primary button--large magnetic" data-release-link href="#"><span>Download RushLink</span><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></svg></a><a class="button button--ghost button--large" href="#docs">Read the quick start</a></div>
-          <small>Desktop early alpha · Free &amp; open source · MIT License</small>
-          <p class="download-release-notes"><a href="https://github.com/Rush-Link/RushLink-App/blob/main/docs/releases/0.1.3.md" target="_blank" rel="noopener noreferrer">Read the RushLink 0.1.3 release notes <span aria-hidden="true">↗</span></a></p>
+          <div class="download-actions"><a class="button button--primary button--large magnetic" data-release-link data-release-tag="rushlink-v0.1.3" href="https://github.com/Rush-Link/rush-link.github.io/releases/tag/rushlink-v0.1.3"><span>Download RushLink 0.1.3</span><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 5-5m-5 5-5-5M5 21h14"/></svg></a><a class="button button--ghost button--large" href="#docs">Read the quick start</a></div>
+          <small>Windows &amp; macOS desktop alpha · Linux, Android &amp; iOS previews · MIT License</small>
+          <p class="download-release-notes"><a href="https://github.com/Rush-Link/RushLink-App/blob/main/docs/releases/0.1.3.md" target="_blank" rel="noopener noreferrer">Read the RushLink 0.1.3 release notes <span aria-hidden="true">↗</span></a> · <a class="download-source-release" href="https://github.com/Rush-Link/RushLink-App/releases/tag/rushlink-v0.1.3" target="_blank" rel="noopener noreferrer">Source repository release <span aria-hidden="true">↗</span></a></p>
+          <details class="download-platforms">
+            <summary>Choose your platform and check preview limits</summary>
+            <ul>
+              <li><strong>Windows x64:</strong> EXE or MSI installer. Current installers are unsigned.</li>
+              <li><strong>macOS:</strong> Choose the Apple Silicon or Intel DMG. Ad-hoc signed builds are not notarized and can trigger Gatekeeper warnings.</li>
+              <li><strong>Linux x64 preview:</strong> Debian package or AppImage. Physical-device verification remains incomplete.</li>
+              <li><strong>Android preview:</strong> ARM64 APK for phones and tablets, or x86-64 APK for an emulator. These are debug-signed previews; emulator startup does not verify a live pedal connection.</li>
+              <li><strong>iOS preview:</strong> Unsigned ARM64 IPA for iPhone/iPad, or an ARM64 simulator <code>.app.zip</code> for an Apple Silicon Mac. The IPA needs developer signing and provisioning before installation on a device; it is not an App Store or TestFlight package.</li>
+            </ul>
+            <p>Installer and preview filenames include <code>headrush-5.2.0</code>, separately from the app version. For example: <code>RushLink_0.1.3_windows_x64_setup_headrush-5.2.0.exe</code> or <code>RushLink_0.1.3_ios-simulator-arm64_headrush-5.2.0.app.zip</code>.</p>
+            <p>The release catalog lists the assets currently available. Live pedal verification covers Flex Prime on firmware 5.2.0; Prime, Core and native mobile hardware still need verification. Back up important rigs before testing.</p>
+          </details>
           <div class="download-support"><p>Enjoying RushLink? Help fund the next improvement.</p><a class="button button--support button--large" href="https://ko-fi.com/mattc_" target="_blank" rel="noopener noreferrer">Support RushLink on Ko-fi</a></div>
         </div>
       </section>

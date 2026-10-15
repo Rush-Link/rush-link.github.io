@@ -173,3 +173,8 @@ html,body{overflow-x:clip}
 .contribute-ways a:hover{text-decoration:underline;text-underline-offset:4px}
 @media(max-width:1120px){.contribute-layout{grid-template-columns:1fr;gap:36px}.contribute-layout .section-heading{max-width:760px}}
 @media(max-width:560px){.contribute-actions{flex-direction:column;align-items:stretch}.contribute-actions .button{width:100%}.contribute-ways article{grid-template-columns:24px minmax(0,1fr);gap:12px}.contribute-ways h3{font-size:18px}}
+.download-platforms{width:100%;max-width:650px;min-width:0;margin-top:24px;text-align:left;color:var(--text-2);font-size:13px;line-height:1.7}
+.download-platforms summary{min-height:44px;padding:10px 0;cursor:pointer;color:var(--text);font-weight:650}
+.download-platforms ul{display:grid;gap:8px;padding-left:20px;margin-top:8px}
+.download-card .download-platforms p{margin-top:14px;color:var(--text-2);font-size:13px}
+.download-platforms code{font-size:12px;overflow-wrap:anywhere}

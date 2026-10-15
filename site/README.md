@@ -97,6 +97,20 @@ Core remain unverified on hardware. Download links continue to use the release
 catalog configured above, so firmware copy does not change the destination or
 claim that a pending build has already been published.
 
+The main download action pins the current catalog release using
+`data-release-tag="rushlink-v0.1.3"`; general Releases links still open the full
+catalog. Keep that tag, the displayed application version, release notes and
+source-repository release link aligned when preparing the next version.
+
+The download details distinguish Windows/macOS desktop alphas from Linux,
+Android and iOS previews, including the unsigned IPA's developer-signing limit.
+Availability comes from the release page. Installer and preview names include
+`headrush-5.2.0` before the extension, for example
+`RushLink_0.1.3_windows_x64_setup_headrush-5.2.0.exe` and
+`RushLink_0.1.3_ios-simulator-arm64_headrush-5.2.0.app.zip`; the compound
+`.app.zip` stays intact. Firmware targeting does not establish hardware
+verification beyond the documented Flex Prime checks.
+
 For a newly created repository, enable **Settings → Pages → GitHub Actions** before the first deployment. If the initial push happened earlier, rerun **Deploy RushLink website** once after enabling Pages.
 
 ## Download totals

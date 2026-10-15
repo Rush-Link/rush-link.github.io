@@ -15,7 +15,8 @@ const repository = resolveRepository();
 const releaseUrl = repository ? `https://github.com/${repository}/releases` : "#download";
 
 document.querySelectorAll("[data-release-link]").forEach((link) => {
-  link.href = releaseUrl;
+  const tag = link.dataset.releaseTag?.trim();
+  link.href = repository && tag ? `${releaseUrl}/tag/${encodeURIComponent(tag)}` : releaseUrl;
   if (repository) link.setAttribute("rel", "noopener");
 });
 

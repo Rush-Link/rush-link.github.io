@@ -4,7 +4,7 @@ import { readFile } from "node:fs/promises";
 import { createServer } from "node:http";
 
 async function validateContrast(page, file, mode) {
-  const contrast = await page.locator(".hero-lead, .download-card>p, .download-release-notes a, .doc-article p, .docs-nav>a, .support-copy>p, .workflow h3, .workflow p, .doc-number, .feature-list li>span, .contact-form label>span:first-child, .contact-form input:not([type=checkbox]), .contact-form select, .contact-form textarea, .footer-meta p, .footer-meta>small, .about-hero__copy>p, .privacy-page>p, .app-window small, .app-window .mock-heading b, .stage-preview-status>span, .history-preview__footer>span, .visual-console small, .visual-console b, .tone-avatar, .cover, .shortcut-grid small, .hero-trust svg, .step-icon svg, .bento-icon svg, .experience-card>svg, .contact-direct svg, .theme-control>svg, .mock-sidebar button svg").evaluateAll((elements) => {
+  const contrast = await page.locator(".hero-lead, .download-card>p, .download-release-notes a, .doc-article p, .docs-nav>a, .support-copy>p, .workflow h3, .workflow p, .doc-number, .feature-list li>span, .contact-form label>span:first-child, .contact-form input:not([type=checkbox]), .contact-form select, .contact-form textarea, .footer-meta p, .footer-meta>small, .about-hero__copy>p, .privacy-page>p, .app-window small, .app-window .mock-heading b, .stage-preview-status>span, .history-preview__footer>span, .visual-console small, .visual-console b, .tone-avatar, .cover, .shortcut-grid small, .download-platforms summary, .download-platforms li, .download-platforms p, .download-platforms code, .hero-trust svg, .step-icon svg, .bento-icon svg, .experience-card>svg, .contact-direct svg, .theme-control>svg, .mock-sidebar button svg").evaluateAll((elements) => {
     const luminance = (rgb) => rgb.map((channel) => channel / 255).map((channel) => channel <= .04045 ? channel / 12.92 : ((channel + .055) / 1.055) ** 2.4).reduce((total, value, index) => total + value * [.2126, .7152, .0722][index], 0);
     const parse = (color) => (color.match(/[\d.]+/g) ?? []).map(Number);
     const blend = (over, under) => over.slice(0, 3).map((value, index) => value * (over[3] ?? 1) + under[index] * (1 - (over[3] ?? 1)));
@@ -82,6 +82,7 @@ export async function validateThemes(browser) {
       const logoSrc = await page.locator("img[data-theme-light]").first().getAttribute("src");
       assert.ok(logoSrc?.endsWith("-light.svg"), `${file}: the logo follows light mode`);
 
+      if (file === "index.html") await page.locator(".download-platforms summary").click();
       await validateContrast(page, file, "light");
       await choice().selectOption("dark");
       await page.waitForTimeout(50);
